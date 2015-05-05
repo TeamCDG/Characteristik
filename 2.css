@@ -1,0 +1,16 @@
+a
+{
+	color: #FFFFFF;
+}
+
+a:visited
+{
+	color: #FFFFFF;
+}
+
+body
+{
+	background-image: url(2.png);
+	background-repeat: repeat;
+	color: #FFFFFF;
+}

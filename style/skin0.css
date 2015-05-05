@@ -1,0 +1,54 @@
+ul#topnav a:hover {
+	color: black;
+}
+
+ul#topnav li:hover>a{
+	color: black;
+}
+
+ul#topnav li {	
+	background:  #222222;
+}
+
+ul#topnav li.transition:hover {
+	background: white;
+}
+
+ul#topnav li:hover>ul li.transition {
+	background:  #222222;
+}
+
+ul#topnav li:hover>ul li:hover {
+	background: white;
+}
+
+ul#topnav li:hover>ul li:hover a{
+	color: black;
+}
+
+#searchcontainer:hover {
+	background:  #222222;
+}
+
+div#footer {
+	background:  #222222;
+}
+
+*.buttonlink:hover {
+	background: white;
+}
+
+*.buttonlink:hover a {
+	color: black;
+}
+
+a, a:hover
+{
+	color: #CCCCCC;
+}
+
+body
+{
+	background-color: #444444;
+	color: #CCCCCC;
+}

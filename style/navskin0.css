@@ -1,0 +1,32 @@
+ul#topnav a:hover {
+	color: black;
+}
+
+ul#topnav li:hover>a{
+	color: black;
+}
+
+ul#topnav li {	
+	background: red;
+}
+
+ul#topnav li.transition:hover {
+	background: white;
+}
+
+ul#topnav li:hover>ul li.transition {
+	background: red;
+}
+
+ul#topnav li:hover>ul li:hover {
+	background: white;
+}
+
+ul#topnav li:hover>ul li:hover a{
+	color: black;
+}
+
+#searchcontainer:hover
+{
+	background: red;
+}
