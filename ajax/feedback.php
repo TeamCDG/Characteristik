@@ -22,7 +22,7 @@ if(!$include)
 	
 	if(isset($_POST['subject']) && isset($_POST['site']) && isset($_POST['desc']))
 	{
-		if(mail("cdg.josh@googlemail.com", "Error report: ".$_POST['subject'], "Seite: ".$_POST['site']."\n".$_POST['desc']."\nSession\n".var_export($_SESSION, true)."\nCookie\n".var_export($_COOKIE, true)))
+		if(mail("cdg.josh@googlemail.com", "Error report: ".$_POST['subject'], "Seite: ".$_POST['site']."\nVon:".getName($_SESSION['userid'], 0)."\n".$_POST['desc']."\nSession\n".var_export($_SESSION, true)."\nCookie\n".var_export($_COOKIE, true)))
 		{
 			die("{\"status\":200, \"message\":\"Problembericht gesendet!\"}");
 		}

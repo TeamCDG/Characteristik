@@ -37,7 +37,7 @@ if(!$include)
 			switch(intval($_POST['type']))
 			{
 				case 0:
-					$id = addCit($_POST['uid'], $_POST['content'], $_POST['t']=="1" || $_POST['t']==1);
+					$id = addCit($_POST['uid'], $_POST['content'], $_POST['t']=="1" || $_POST['t']==1 || $_POST['t']=="true");
 					echo "{\"status\":200, \"message\":\"erfolgreich hinzugefügt\", \"id\":".$id.", \"name\":\"".getName($_SESSION['userid'], 0)."\", \"hname\":\"".getName($_POST['uid'], intval($_POST['t']))."\"}";
 					break;
 				case 1:

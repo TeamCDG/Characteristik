@@ -34,7 +34,7 @@ if(!$include)
 	{
 		if(is_numeric($_POST['type']))
 		{
-			$t = $_POST['t']=="1" || $_POST['t']==1;
+			$t = $_POST['t']=="1" || $_POST['t']==1 || $_POST['t']=="true";
 			switch(intval($_POST['type']))
 			{
 				case 0:

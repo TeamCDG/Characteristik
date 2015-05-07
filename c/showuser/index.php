@@ -427,6 +427,7 @@ $info = mysql_fetch_object($res);
 			
 			var val = $('#charc').val();
 			$.post( "<?php echo $rootfolder; ?>ajax/charedit.php", { type: "0", uid: uid, t: t, content: val}, function( data) {
+				<?php if($_SESSION['debug']) { ?> console.log(data); <?php } ?>
 				var res = JSON.parse(data);
 				if(res.status == "200")
 				{
@@ -592,7 +593,7 @@ $info = mysql_fetch_object($res);
 				} , function( data) {
 					
 					
-					<?php if(!$_SESSION['debug']) { ?> console.log(data); <?php } ?>
+					<?php if($_SESSION['debug']) { ?> console.log(data); <?php } ?>
 					
 					$('#info_infomsg').css('display', 'none');
 					$('#info_infomsg').html(data);
