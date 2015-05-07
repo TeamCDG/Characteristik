@@ -155,7 +155,7 @@ include($_SERVER['DOCUMENT_ROOT'].$rootfolder."ajax/news.php");
 		</script>
 		
 		<h1>Startseite</h1>
-		<h2 id="important_info">Fehler bei Zitaten behoben, Lehrer können nun zitiert werden.</h2>
+		<h2 id="important_info">Fehler bei Lehrercharakteristik behoben.</h2>
 		<table cellspacing="0">
 			<tr>
 				<th class="br">Neuste Aktivität Schüler</th>
