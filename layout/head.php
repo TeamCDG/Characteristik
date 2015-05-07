@@ -99,7 +99,7 @@ else if(isset($_POST['search']) && $_POST['uid']==-1)
 	</head>
 	<body <?php if($illuminati) { ?>  onkeydown="unilluminati()" <?php } ?> >
 	<?php if($illuminati) { ?>
-		<div id="illuminati" style="width: 800px; height: 800px; z-index: 599; pointer-events: none; left: calc(50% - 400px); position: absolute;">
+		<div onload="setvol();" id="illuminati" style="width: 800px; height: 800px; z-index: 599; pointer-events: none; left: calc(50% - 400px); position: absolute;">
 			<img id="illuminati_image" width="800px" height="800px" title="Illuminati confirmed" style="opacity: 0.65; alt="Illuminati confirmed" src="<?php echo $rootfolder; ?>images/illuminati.png">
 			
 			<audio id ="illuminati_sound" controls loop autoplay style="display:none;" onplay="setvol();">
@@ -112,15 +112,6 @@ else if(isset($_POST['search']) && $_POST['uid']==-1)
 			
 			var illuminatiId = -1;		
 			var rot = 0;
-			function illuminati()
-			{
-				rot += 0.5;
-				//rot = rot % 360;
-				$('#illuminati_image').css("transform", rot+"deg");
-				alert("baum");
-				//illuminatiId = setInterval(illuminati(), 1000);
-			}
-			
 			function unilluminati()
 			{
 				clearInterval(illuminatiId);

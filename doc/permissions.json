@@ -1,0 +1,50 @@
+{
+	"char_read_own": {
+		"name": "char_read_own",
+		"display": "Lesen eigener Charakteristik",
+		"description": "Diese Richtline erlaubt dem Nutzer zu lesen, was auf seine Charakteristik geschrieben wurde"
+	}
+	
+	"char_read_other": {
+		"name": "char_read_other",
+		"display": "Lesen anderer Charakteristik",
+		"description": "Diese Richtline erlaubt dem Nutzer zu lesen, was auf die Charakteristik anderer Personen geschrieben wurde, Ist diese Richtlinie aktiv, so wird der Wert von %char_read_own% ignoriert."
+	}
+	
+	"char_see_from_own": {
+		"name": "char_see_from_own",
+		"display": "Autor(en) auf eigner Charakteristik anzeigen",
+		"description": "Diese Richtline erlaubt dem Nutzer N anzuzeigen, wer etwas auf die Charakteristik des Nutzers N geschrieben hat."
+	}
+	
+	"char_see_from_other": {
+		"name": "char_see_from_other",
+		"display": "Autor(en) auf anderer Charakteristik anzeigen",
+		"description": "Diese Richtline erlaubt dem Nutzer N anzuzeigen, wer etwas auf die Charakteristik eines beliebigen Nutzers geschrieben hat. Ist diese Richtlinie aktiv, so wird der Wert von %char_see_from_own% ignoriert."
+	}
+	
+	"char_post": {
+		"name": "char_post",
+		"display": "Charakteristik hinzufügen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge zu einer Charakteristik hinzuzufügen."
+	}
+	
+	"char_edit_own": {
+		"name": "char_edit_own",
+		"display": "Eigene Beiträge bearbeiten",
+		"description": "Diese Richtline erlaubt dem Nutzer eigene Beiträge zu bearbeiten."
+	}
+	
+	"char_direct_delete_own": {
+		"name": "char_direct_delete_own",
+		"display": "Beiträge auf eigner Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf seiner eigenen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_delete_request_own% ignoriert."
+	}
+	
+	"char_direct_delete_other": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}
+	
+}
