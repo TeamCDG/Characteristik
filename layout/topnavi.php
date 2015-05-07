@@ -1,6 +1,13 @@
 
 <?php 
 //$rootfolder = str_replace('//', '/', str_replace($_SERVER['DOCUMENT_ROOT'], '/', str_replace('\\', '/', substr(__DIR__, 0, strrpos(__DIR__, '\\'))).'/'));
+function getNewCharCount($id)
+{
+	$ls = getMaxId($id);
+	$sql = "SELECT COUNT(*) AS c FROM `uchar` WHERE `holder`='".$_SESSION['userid']."' AND `id`>'".mysql_real_escape_string($ls)."' ORDER BY `id` DESC LIMIT 1;";
+	$res = mysql_query($sql) or die("ERROR 418: Query failed: ".$sql." ".mysql_error());
+	return mysql_fetch_object($res)->c;
+}
 ?>
  <div id="container">
         <div id="border">
@@ -37,7 +44,7 @@
 				</li>
 				<li class="transition"><a>Charakteristik</a>
 					<ul>
-						<li class="transition"><a href="<?php echo $rootfolder."c/showuser/?uid=".$_SESSION['userid']; ?>">Meine Seite (0)</a></li>
+						<li class="transition"><a href="<?php echo $rootfolder."c/showuser/?uid=".$_SESSION['userid']; ?>">Meine Seite (<?php echo getNewCharCount($_SESSION['userid']); ?>)</a></li>
 						<li class="transition"><a href="<?php echo $rootfolder."c/cit/"; ?>">Zitate</a></li>
 						<li class="transition"><a href="<?php echo $rootfolder."c/gossip/"; ?>">Gerüchteküche</a></li>
 						<li class="transition"><a href="<?php echo $rootfolder."c/polls/"; ?>">Umfragen</a></li>

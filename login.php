@@ -7,14 +7,14 @@ session_start();
 include("functions.php");
 if(isset($_SESSION['userid']))
 {
-	header('Location: index.php');
+	header('Location: '.$rootfolder);
 	exit;
 }
 if(isset($_POST['user']) && isset($_POST['pass']))
 {
 	if(login($_POST['user'], $_POST['pass'], $_POST['keks']=="thecakeisalie"))
 	{
-		header('Location: index.php');
+		header('Location: '.$rootfolder);
 		exit;
 	}
 }

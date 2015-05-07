@@ -1,5 +1,6 @@
 <?php 
 include($_SERVER['DOCUMENT_ROOT'].$rootfolder."ajax/guessid.php");
+$illuminati = false;
 if(isset($_POST['search']) && $_POST['uid']!=-1)
 {
 	if(isset($_POST['teacher']))
@@ -21,7 +22,10 @@ else if(isset($_POST['search']) && $_POST['uid']==-1)
 	}
 	else
 	{
-		//var_dump($_POST);
+		if(strtolower($_POST['user']) == "illuminati")
+		{
+			$illuminati = true;
+		}
 	}
 }
 ?>
@@ -80,6 +84,7 @@ else if(isset($_POST['search']) && $_POST['uid']==-1)
 					.appendTo( ul );
 			};
 		});
+		
 		</script>
 		<script type="text/javascript">
 		function sub()
@@ -92,4 +97,55 @@ else if(isset($_POST['search']) && $_POST['uid']==-1)
 
 			
 	</head>
-	<body>
+	<body <?php if($illuminati) { ?>  onkeydown="unilluminati()" <?php } ?> >
+	<?php if($illuminati) { ?>
+		<div id="illuminati" style="width: 800px; height: 800px; z-index: 599; pointer-events: none; left: calc(50% - 400px); position: absolute;">
+			<img id="illuminati_image" width="800px" height="800px" title="Illuminati confirmed" style="opacity: 0.65; alt="Illuminati confirmed" src="<?php echo $rootfolder; ?>images/illuminati.png">
+			
+			<audio id ="illuminati_sound" controls autoplay style="display:none;" onplay="setvol();">
+				<source src="<?php echo $rootfolder; ?>sound/illuminati.ogg" type="audio/ogg">
+				<source src="<?php echo $rootfolder; ?>sound/illuminati.mp3" type="audio/mpeg">
+			</audio>
+		</div>
+		<script type="text/javascript">
+			
+			
+			var illuminatiId = -1;		
+			var rot = 0;
+			function illuminati()
+			{
+				rot += 0.5;
+				//rot = rot % 360;
+				$('#illuminati_image').css("transform", rot+"deg");
+				alert("baum");
+				//illuminatiId = setInterval(illuminati(), 1000);
+			}
+			
+			function unilluminati()
+			{
+				clearInterval(illuminatiId);
+				$('#illuminati_sound').stop();
+				$('#illuminati').remove();
+			}
+			
+			function setvol()
+			{
+				 $("#illuminati_sound").prop("volume", 0.1);
+				 
+				illuminatiId = setInterval(function(){
+					rot -= 1;
+					rot = rot % 360;
+					$('#illuminati_image').css({  
+                                '-webkit-transform': 'rotate(' + rot + 'deg)',  //Safari 3.1+, Chrome  
+                                '-moz-transform': 'rotate(' + rot + 'deg)',     //Firefox 3.5-15  
+                                '-ms-transform': 'rotate(' + rot + 'deg)',      //IE9+  
+                                '-o-transform': 'rotate(' + rot + 'deg)',       //Opera 10.5-12.00  
+                                'transform': 'rotate(' + rot + 'deg)'          //Firefox 16+, Opera 12.50+  
+    
+                            })  
+					console.log("rot: "+rot+" / realrot: "+$('#illuminati_image').css("transform"));
+				}, 33);
+			}
+			
+		</script>
+	<?php } ?>

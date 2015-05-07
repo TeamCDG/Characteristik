@@ -22,6 +22,20 @@ include($_SERVER['DOCUMENT_ROOT'].$rootfolder."ajax/infodesigner.php");
 			<th class="br">Eintrag</th>
 			<th class="b">Löschen</th>*/
 			
+if($_SESSION['userid'] == $_GET['uid'])
+{
+	setMaxId($_SESSION['userid']);
+}
+
+function setMaxId($id)
+{
+	$sql = "SELECT * FROM `uchar` WHERE `holder`='".mysql_real_escape_string($id)."' ORDER BY `id` DESC LIMIT 1;";
+	$res = mysql_query($sql) or die("ERROR 418: Query failed: ".$sql." ".mysql_error());
+	$ls = mysql_fetch_object($res)->id;
+	
+	$sql = "UPDATE `user` SET `lastseen`='".$ls."' WHERE `id`='".mysql_real_escape_string($id)."';";
+	$res = mysql_query($sql) or die("ERROR 418: Query failed: ".$sql." ".mysql_error());
+}
 
 function getChars($uid, $teacher)
 {

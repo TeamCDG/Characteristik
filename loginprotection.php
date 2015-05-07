@@ -10,26 +10,16 @@ header('Content-Type: text/html; charset=utf-8');
 include($_SERVER['DOCUMENT_ROOT'].$rootfolder."config/settingsreader.php");
 if(!isset($_SESSION['userid']) && !cookieLogin())
 {
-	header('Location: login.php');
+	header('Location: '.$rootfolder.'login.php');
 	exit;
 }
 else
 {
-	if(!isset($_COOKIE['maxid']))
+	if(!isset($_SESSION['maxid']))
 	{
-		if(!isset($_SESSION['maxid']))
-		{
-			setcookie("maxid", 0, time() + 60*60*24*3000, '/');
-		}
-		else
-		{
-			setcookie("maxid", $_SESSION['maxid'], time() + 60*60*24*3000, '/');
-		}
+		$_SESSION['maxid'] = getMaxId($_SESSION['userid']);
 	}
-	else if(intval($_COOKIE['maxid']) <  intval($_SESSION['maxid']))
-	{
-		setcookie("maxid", $_SESSION['maxid'], time() + 60*60*24*3000, '/');
-	}
+
 	
 	if(!isset($_COOKIE['hidemyass']))
 	{
@@ -58,6 +48,11 @@ else
 	
 }
 
-
+function getMaxId($id)
+{
+	$sql = "SELECT * FROM `user` WHERE `id`='".mysql_real_escape_string($id)."';";
+	$res = mysql_query($sql) or die("ERROR 418: Query failed: ".$sql." ".mysql_error());
+	return mysql_fetch_object($res)->lastseen;
+}
 include($_SERVER['DOCUMENT_ROOT'].$rootfolder."config/permissionreader.php");
 ?>

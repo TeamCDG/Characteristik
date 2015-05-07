@@ -21,6 +21,7 @@ include($_SERVER['DOCUMENT_ROOT'].$rootfolder."ajax/news.php");
 			</ul>
 			<h3>Erweiterungen: </h3>
 			<ul>
+				<li>Anzeige der neuen Posts auf der eigenen Seite</li>
 				<li>Wartungsaccount</li>
 			</ul>
 		</p>
