@@ -1,6 +1,6 @@
 <?php 
 include($_SERVER['DOCUMENT_ROOT'].$rootfolder."ajax/guessid.php");
-$illuminati = false;
+$illuminati = isset($_GET['illuminati']);
 if(isset($_POST['search']) && $_POST['uid']!=-1)
 {
 	if(isset($_POST['teacher']))
@@ -102,7 +102,7 @@ else if(isset($_POST['search']) && $_POST['uid']==-1)
 		<div id="illuminati" style="width: 800px; height: 800px; z-index: 599; pointer-events: none; left: calc(50% - 400px); position: absolute;">
 			<img id="illuminati_image" width="800px" height="800px" title="Illuminati confirmed" style="opacity: 0.65; alt="Illuminati confirmed" src="<?php echo $rootfolder; ?>images/illuminati.png">
 			
-			<audio id ="illuminati_sound" controls autoplay style="display:none;" onplay="setvol();">
+			<audio id ="illuminati_sound" controls loop autoplay style="display:none;" onplay="setvol();">
 				<source src="<?php echo $rootfolder; ?>sound/illuminati.ogg" type="audio/ogg">
 				<source src="<?php echo $rootfolder; ?>sound/illuminati.mp3" type="audio/mpeg">
 			</audio>
@@ -142,8 +142,8 @@ else if(isset($_POST['search']) && $_POST['uid']==-1)
                                 '-o-transform': 'rotate(' + rot + 'deg)',       //Opera 10.5-12.00  
                                 'transform': 'rotate(' + rot + 'deg)'          //Firefox 16+, Opera 12.50+  
     
+					// console.log("rot: "+rot+" / realrot: "+$('#illuminati_image').css("transform"));
                             })  
-					console.log("rot: "+rot+" / realrot: "+$('#illuminati_image').css("transform"));
 				}, 33);
 			}
 			

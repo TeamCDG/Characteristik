@@ -23,6 +23,7 @@ include($_SERVER['DOCUMENT_ROOT'].$rootfolder."ajax/news.php");
 			<ul>
 				<li>Anzeige der neuen Posts auf der eigenen Seite</li>
 				<li>Wartungsaccount</li>
+				<li>Neues Easteregg</li>
 			</ul>
 		</p>
 		
