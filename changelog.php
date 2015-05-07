@@ -17,7 +17,7 @@ include($_SERVER['DOCUMENT_ROOT'].$rootfolder."ajax/news.php");
 		<p>
 			<h3>Änderungen: </h3>
 			<ul>
-				<li>Sicheres einloggen durch MD5 Passwort Übertragung</li>
+				<li>Neues Loginsystem: Sicheres einloggen durch MD5 Passwortübertragung</li>
 			</ul>
 			<h3>Erweiterungen: </h3>
 			<ul>

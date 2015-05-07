@@ -106,7 +106,7 @@ function get_content($dbname, $table, $sql_connection) {
     $content=""; 
     $result = mysql_query("SELECT * FROM $table",$sql_connection); 
     while($row = mysql_fetch_row($result)) { 
-        $insert = "INSERT IGNORE INTO $table VALUES ("; 
+        $insert = "REPLACE INTO $table VALUES ("; 
         for($j=0; $j<mysql_num_fields($result);$j++) { 
             if(!isset($row[$j])) $insert .= "NULL,"; 
             else if($row[$j] != "") $insert .= "'".addslashes($row[$j])."',"; 
