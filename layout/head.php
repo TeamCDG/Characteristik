@@ -1,6 +1,6 @@
 <?php 
 include($_SERVER['DOCUMENT_ROOT'].$rootfolder."ajax/guessid.php");
-if(isset($_POST['search']) && $_POST['uid']!=-1)
+if(isset($_POST['uid']) && $_POST['uid']!=-1)
 {
 	if(isset($_POST['teacher']))
 		header('Location: '.$rootfolder.'c/showuser/?uid='.$_POST['uid'].'&t='.$_POST['teacher']);
@@ -8,7 +8,7 @@ if(isset($_POST['search']) && $_POST['uid']!=-1)
 		header('Location: '.$rootfolder.'c/showuser/?uid='.$_POST['uid']);
 	exit;
 }
-else if(isset($_POST['search']) && $_POST['uid']==-1)
+else if(isset($_POST['uid']) && $_POST['uid']==-1)
 {
 	$id = getUserId($_POST['user']);
 	if($id[0] != -1)
@@ -70,7 +70,7 @@ else if(isset($_POST['search']) && $_POST['uid']==-1)
 					$( "#search" ).val( ui.item.label );
 					$( "#id" ).val( ui.item.id );
 					$( "#teacher" ).val( ui.item.teacher );
-					//sub();
+					$("#searchform").submit();
 					return false;
 				}
 			})
