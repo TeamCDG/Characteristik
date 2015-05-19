@@ -155,7 +155,7 @@ include($_SERVER['DOCUMENT_ROOT'].$rootfolder."ajax/news.php");
 		</script>
 		
 		<h1>Startseite</h1>
-		<h2 id="important_info">Da manche leider den Suchen Knopf übersehen, wird nun beim Klick auf einen Vorschlag gesucht... Wens stört -> Problem melden (Betreff bitte "CTS aus"), dann bau ich ne funktion zum ausschalten ein...</h2>
+		<h2 id="important_info">Mehr laden läd nur noch bis alles geladen wurde. <br> PS: Knopf gedrückt ;)</h2>
 		<table cellspacing="0">
 			<tr>
 				<th class="br">Neuste Aktivität Schüler</th>
