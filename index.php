@@ -155,7 +155,7 @@ include($_SERVER['DOCUMENT_ROOT'].$rootfolder."ajax/news.php");
 		</script>
 		
 		<h1>Startseite</h1>
-		<h2 id="important_info">Mehr laden läd nur noch bis alles geladen wurde. <br> PS: Knopf gedrückt ;)</h2>
+		<h2 id="important_info">Warum regt sich eigentlich keiner drüber auf, dass gelöschte gerüchte nicht verschwunden sind?? naja nun funktionierts :D<br>In other news: Knopf gedrückt ;)</h2>
 		<table cellspacing="0">
 			<tr>
 				<th class="br">Neuste Aktivität Schüler</th>

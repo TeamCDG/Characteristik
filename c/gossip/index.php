@@ -44,9 +44,9 @@ function listGossip()
 		else if($_SESSION['permissions']['gossip_delete_request'] && $_SESSION['gossip_delete_request'])
 		{
 			echo "<td class=\"b delete\">";
-			if(isRequested($row->id, 2))
+			if(isRequested($row->id, 3))
 			{
-				echo "<div>".getRequestStatus($row->id, 2)."</div>";
+				echo "<div>".getRequestStatus($row->id, 3)."</div>";
 			}
 			else
 			{
