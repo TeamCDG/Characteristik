@@ -49,6 +49,17 @@ else
 	
 }
 
+$res = mysql_query("SELECT * FROM `backup` ORDER BY `id` DESC LIMIT 1") or die ("ERROR #LEL: Query failed: $sql @connect.php - ".mysql_error());;
+$b = mysql_fetch_object($res);
+
+if( (strtotime("now")-strtotime($b->date))/3600 > intval($_SESSION['backup_delta']))
+{
+	include("backup.php");
+	$bres = @backup($_SESSION['backup_compression'], $_SESSION['backup_send_mail'], $_SESSION['backup_email'], $_SESSION['backup_folder'], $dbname, $c);
+	$sql = "INSERT INTO `backup` VALUES (NULL, NULL, '".((int)$bres['sentmail'])."', '".$bres['mailreciever']."', '".$bres['filename']."', '0');";
+	mysql_query($sql) or die ("ERROR #LEL: Query failed: $sql @connect.php - ".mysql_error());
+}
+
 function getMaxId($id)
 {
 	$sql = "SELECT * FROM `user` WHERE `id`='".mysql_real_escape_string($id)."';";
