@@ -44,3 +44,5 @@ Temporary Items
 
 connect.php
 ajax/login.php
+gallery/albums/*
+backup/*

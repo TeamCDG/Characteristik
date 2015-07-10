@@ -55,6 +55,11 @@ else if(isset($_POST['search']) && $_POST['uid']==-1)
 		<script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
 		<script src="<?php echo $rootfolder;?>lib/randint.js"></script>
 		<script src="<?php echo $rootfolder;?>lib/unwrapinner.js"></script>
+		<script src="<?php echo $rootfolder;?>lib/jquery.form.min.js"></script>
+		
+		<script src="<?php echo $rootfolder;?>lib/lightbox/js/lightbox-2.6.js"></script>
+		<link href="<?php echo $rootfolder;?>lib/lightbox/css/lightbox.css" rel="stylesheet" />
+		
 		<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/md5.js"></script>
 		<script>
 		$(function() {

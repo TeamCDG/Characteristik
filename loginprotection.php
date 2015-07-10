@@ -6,6 +6,7 @@ ob_start();
 $_SESSION['mobile']= (bool)preg_match('#\b(ip(hone|od|ad)|android|opera m(ob|in)i|windows (phone|ce)|blackberry|tablet'.
                     '|s(ymbian|eries60|amsung)|p(laybook|alm|rofile/midp|laystation portable)|nokia|fennec|htc[\-_]'.
                     '|mobile|up\.browser|[1-4][0-9]{2}x[1-4][0-9]{2})\b#i', $_SERVER['HTTP_USER_AGENT'] );
+$version="0.1.9";
 include("functions.php");
 header('Content-Type: text/html; charset=utf-8');
 include($_SERVER['DOCUMENT_ROOT'].$rootfolder."config/settingsreader.php");
@@ -56,7 +57,7 @@ if( (strtotime("now")-strtotime($b->date))/3600 > intval($_SESSION['backup_delta
 {
 	include("backup.php");
 	$bres = @backup($_SESSION['backup_compression'], $_SESSION['backup_send_mail'], $_SESSION['backup_email'], $_SESSION['backup_folder'], $dbname, $c);
-	$sql = "INSERT INTO `backup` VALUES (NULL, NULL, '".((int)$bres['sentmail'])."', '".$bres['mailreciever']."', '".$bres['filename']."', '0');";
+	$sql = "INSERT INTO `backup` VALUES (NULL, NULL, '".((int)$bres['sentmail'])."', '".$bres['mailreciever']."', '".$bres['filename']."', '0', '0');";
 	mysql_query($sql) or die ("ERROR #LEL: Query failed: $sql @connect.php - ".mysql_error());
 }
 

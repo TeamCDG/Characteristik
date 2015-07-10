@@ -248,6 +248,10 @@ div#input_container input {
 	width: 80px;
 }
 
+*.restorebutton {
+	width: 140px;
+}
+
 *.addbutton {
 	width: 100px;
 }
