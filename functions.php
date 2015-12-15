@@ -1,6 +1,7 @@
 <?php
 include("connect.php");
 
+error_reporting(E_ERROR | E_WARNING | E_PARSE);
 
 
 function cookieLogin()
@@ -13,20 +14,22 @@ function cookieLogin()
 	$res = mysql_query($sql) or die ("ERROR #014: Query failed: $sql @functions.php - ".mysql_error());
 	if($obj = mysql_fetch_object($res))
 	{
-		$_SESSION['userid'] = $obj->id;
-		$_SESSION['style'] = $obj->style;
-		
-		if(isset($_COOKIE['maxid']))
-			$_SESSION['maxid'] = $_COOKIE['maxid'];
-		else
-			$_SESSION['maxid'] = 0;
+			$_SESSION['userid'] = $obj->id;
 			
-		if($obj->admin)
-			$_SESSION['admin'] = true;
-		else
-			$_SESSION['admin'] = false;
+			if($obj->admin)
+				$_SESSION['admin'] = true;
+			else
+				$_SESSION['admin'] = false;
+				
+			if(isset($_COOKIE['maxid']))
+				$_SESSION['maxid'] = $_COOKIE['maxid'];
+			else
+				$_SESSION['maxid'] = 0;	
 			
-		return true;
+			if($cookie && !isset($_COOKIE['userid']))
+				setcookie("userid", $obj->id, time() + 60*60*24*3000);
+				
+			return true;
 	}
 	else
 	{
@@ -164,6 +167,43 @@ function getAllJSON()
 		echo "{id:\"".$row->id."\",teacher:\"1\",label:\"".$row->prename." ".$row->name."\"},";
 	}
 }
+
+function getAllUser($onlyStillThere = true, $orderBy = 'id')
+{
+	$sql = "SELECT * FROM `user`";
+	if($onlyStillThere)
+		$sql.=" WHERE `stillthere` = 1 ";
+	$sql .= "ORDER BY `".mysql_real_escape_string($orderBy)."` "; //TODO: fix if field is not there
+	$res = mysql_query($sql) or die ("ERROR #027: Query failed: $sql @functions.php - ".mysql_error());
+	
+	$user = array();
+	
+	while($row = mysql_fetch_object($res))
+	{
+		array_push($user, $row);
+	}
+	
+	return $user;
+}
+
+function getAllTeacher($onlyVisible = true, $orderBy = 'id')
+{
+	$sql = "SELECT * FROM `teacher`";
+	if($onlyStillThere)
+		$sql.=" WHERE `visible` = 1 ";
+	$sql .= "ORDER BY `".mysql_real_escape_string($orderBy)."` "; //TODO: fix if field is not there
+	$res = mysql_query($sql) or die ("ERROR #027: Query failed: $sql @functions.php - ".mysql_error());
+	
+	$user = array();
+	
+	while($row = mysql_fetch_object($res))
+	{
+		array_push($user, $row);
+	}
+	
+	return $user;
+}
+
 
 function listAllUser()
 {
@@ -668,14 +708,14 @@ function listLessSpammed()
 
 function hasVoted($uid, $pid)
 {
-	$sql = "SELECT COUNT(*) as c FROM pollvotes WHERE `pollid`='".$pid."' AND `voter`='".$uid."'";
+	$sql = "SELECT * FROM pollvotes WHERE `pollid` = '".$pid."' AND `voter` = '".$uid."'";
 	$res = mysql_query($sql) or die ("ERROR #035: Query failed: $sql @functions.php - ".mysql_error());
 	
-	$obj = mysql_fetch_object($res);
+	//$obj = mysql_fetch_object($res);
 	
 	
 	
-	return intval($obj->c) > 0;
+	return mysql_num_rows($res) > 0;
 }
 
 function getVote($uid, $pid)
@@ -690,6 +730,46 @@ function getVote($uid, $pid)
 	return $obj->voteid;
 }
 
+function getVotesBy($pid, $uid)
+{
+	$sql = "SELECT * FROM pollvotes WHERE `pollid`='".$pid."' AND `voter`='".$uid."'";
+	$res = mysql_query($sql) or die ("ERROR #035: Query failed: $sql @functions.php - ".mysql_error());
+	
+	$votes = array();
+	while($row = mysql_fetch_array($res))
+	{
+		array_push($votes, $row);
+	}
+	
+	return $votes;
+}
+
+function getAllPolls()
+{
+	$sql = "SELECT * FROM polls ORDER BY `closed` ASC";
+	$res = mysql_query($sql) or die ("ERROR: Query failed: $sql @".__FILE__.":".__FUNCTION__."(".__LINE__.") - ".mysql_error());
+	
+	$polls = array();
+	while($row = mysql_fetch_array($res))
+	{
+		$row['voted'] = hasVoted($_SESSION['userid'], $row['id']);
+		array_push($polls, $row);
+	}
+	
+	return $polls;
+}
+
+function getPoll($id)
+{
+	$sql = "SELECT * FROM polls WHERE `id` = '".$id."'";
+	$res = mysql_query($sql) or die ("ERROR: Query failed: $sql @".__FILE__.":".__FUNCTION__."(".__LINE__.") - ".mysql_error());
+	
+	$poll = mysql_fetch_array($res);
+	$poll['voted'] = hasVoted($_SESSION['userid'], $poll['id']);
+	
+	return $poll;
+}
+/*
 function listAllPolls()
 {
 	$sql = "SELECT * FROM polls ORDER BY `closed` ASC";
@@ -720,15 +800,84 @@ function listAllPolls()
 	echo "</ul>";
 	
 	
+}*/
+
+function getAnswers($pid)
+{
+	$poll = getPoll($pid);
+	
+	$answers = array();
+	if($poll['type'] == 0)
+	{
+		$sql = "SELECT * FROM user WHERE `stillthere`='1';";
+		$res = mysql_query($sql) or die ("ERROR #1302: Query failed: $sql @functions.php - ".mysql_error());
+
+		while($obj = mysql_fetch_object($res))
+		{
+			$answers[$obj->id] =  $obj->prename." ".$obj->name;
+		}
+
+	}
+	else if($poll['type'] == 1)
+	{
+		$sql = "SELECT * FROM teacher WHERE `visible`='1';";
+		$res = mysql_query($sql) or die ("ERROR #1302: Query failed: $sql @functions.php - ".mysql_error());
+		
+		while($obj = mysql_fetch_object($res))
+		{
+			$answers[$obj->id] =  $obj->prename." ".$obj->name;
+		}
+	}
+	else if($poll['type'] == 2)
+	{
+		$answers['0'] = "Ja"; 
+		$answers['1'] = "Nein"; 
+	}
+	else
+	{
+		$sql = "SELECT * FROM pollanswers WHERE `pollid`='".$pid."' ;";
+		$res = mysql_query($sql) or die ("ERROR #1302: Query failed: $sql @functions.php - ".mysql_error());
+		while($obj = mysql_fetch_object($res))
+		{
+			$answers[$obj->voteid] = $obj->text;
+		}
+	}
+	
+	return $answers;
 }
 
 function getAnswerText($pid, $vid)
 {
-	$sql = "SELECT * FROM pollanswers WHERE `pollid`='".$pid."' AND `voteid`='".$vid."';";
-	$res = mysql_query($sql) or die ("ERROR #1302: Query failed: $sql @functions.php - ".mysql_error());
-	$obj = mysql_fetch_object($res);
+	$poll = getPoll($pid);
 	
-	return $obj->text;
+	if($poll['type'] == 0)
+	{
+		$sql = "SELECT * FROM user WHERE `id`='".$vid."';";
+		$res = mysql_query($sql) or die ("ERROR #1302: Query failed: $sql @functions.php - ".mysql_error());
+		$obj = mysql_fetch_object($res);
+		
+		return $obj->prename." ".$obj->name;
+	}
+	else if($poll['type'] == 1)
+	{
+		$sql = "SELECT * FROM teacher WHERE `id`='".$vid."';";
+		$res = mysql_query($sql) or die ("ERROR #1302: Query failed: $sql @functions.php - ".mysql_error());
+		$obj = mysql_fetch_object($res);
+		
+		return $obj->prename." ".$obj->name;
+	}
+	else if($poll['type'] == 2)
+	{
+		return $vid==0?"Ja":"Nein";
+	}
+	else
+	{
+		$sql = "SELECT * FROM pollanswers WHERE `pollid`='".$pid."' AND `voteid`='".$vid."';";
+		$res = mysql_query($sql) or die ("ERROR #1302: Query failed: $sql @functions.php - ".mysql_error());
+		$obj = mysql_fetch_object($res);
+		
+		return $obj->text;
+	}
 }
 
 function showpoll($pid)
@@ -826,7 +975,7 @@ function showpoll($pid)
 		echo "Sorry, Editierfunktion wurde von der Jahrgangsf?hrung verboten... Hate bitte gegen sie richten :) ~Josh <br>";
 	}
 }
-
+/*
 function vote($pid, $answers)
 {
 	if(hasVoted($_SESSION['userid'], $pid))
@@ -842,13 +991,13 @@ function vote($pid, $answers)
 			mysql_query($sql) or die ("ERROR #028: Query failed: $sql @functions.php - ".mysql_error());
 		}
 	}
-}
-
+}*/
+/*
 function closePoll($id)
 {
 	$sql = "UPDATE polls SET `closed` = '1' WHERE `id`='".$id."'";
 	mysql_query($sql) or die ("ERROR #027: Query failed: $sql @functions.php - ".mysql_error());
-}
+}*/
 
 /*function addAllUserPoll($title, $multivote, $finalchoice)
 {
@@ -856,7 +1005,7 @@ function closePoll($id)
 	array_push();
 	
 }*/
-
+/*
 function addPoll($title, $answers, $multivote, $finalchoice)
 {
 	$sql = "INSERT INTO polls (`id`, `by`, `title`, `closed`, `multivote`, `finalchoice`) VALUES (NULL, '".$_SESSION['userid']."', '".mysql_real_escape_string(trim($title))."', '0', '".$multivote."', '".$finalchoice."')";
@@ -879,6 +1028,7 @@ function addPoll($title, $answers, $multivote, $finalchoice)
 	return mysql_fetch_object($res)->id;
 	
 }
+*/
 
 /*
 function addChar($to, $teacher, $content)

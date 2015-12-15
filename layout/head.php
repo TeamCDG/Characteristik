@@ -1,7 +1,7 @@
 <?php 
 include($_SERVER['DOCUMENT_ROOT'].$rootfolder."ajax/guessid.php");
 $illuminati = isset($_GET['illuminati']);
-if(isset($_POST['search']) && $_POST['uid']!=-1)
+if(isset($_POST['user']) && $_POST['uid']!=-1)
 {
 	if(isset($_POST['teacher']))
 		header('Location: '.$rootfolder.'c/showuser/?uid='.$_POST['uid'].'&t='.$_POST['teacher']);
@@ -9,7 +9,7 @@ if(isset($_POST['search']) && $_POST['uid']!=-1)
 		header('Location: '.$rootfolder.'c/showuser/?uid='.$_POST['uid']);
 	exit;
 }
-else if(isset($_POST['search']) && $_POST['uid']==-1)
+else if(isset($_POST['user']) && $_POST['uid']==-1)
 {
 	$id = getUserId($_POST['user']);
 	if($id[0] != -1)
@@ -47,6 +47,7 @@ else if(isset($_POST['search']) && $_POST['uid']==-1)
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 		
 		<link rel="stylesheet" href="<?php echo $rootfolder;?>style/skin0.css">
+		<link rel="icon" href="<?php echo $rootfolder;?>images/crow.ico" type="image/x-icon" />
 		<style type="text/css">
 		<?php include($_SERVER['DOCUMENT_ROOT'].$rootfolder."layout/layout.php"); ?>
 		</style>

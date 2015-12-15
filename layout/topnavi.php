@@ -47,7 +47,7 @@ function getNewCharCount($id)
 						<li class="transition"><a href="<?php echo $rootfolder."c/showuser/?uid=".$_SESSION['userid']; ?>">Meine Seite (<?php echo getNewCharCount($_SESSION['userid']); ?>)</a></li>
 						<li class="transition"><a href="<?php echo $rootfolder."c/cit/"; ?>">Zitate</a></li>
 						<li class="transition"><a href="<?php echo $rootfolder."c/gossip/"; ?>">Gerüchteküche</a></li>
-						<li class="transition"><a href="<?php echo $rootfolder."c/polls/"; ?>">Umfragen</a></li>
+						<li class="transition"><a href="<?php echo $rootfolder."c/polls/"; ?>">Alle Umfragen</a></li>
 						<li class="transition"><a href="<?php echo $rootfolder."c/alls/"; ?>">Alle Schüler</a></li>
 						<li class="transition"><a href="<?php echo $rootfolder."c/allt/"; ?>">Alle Lehrer</a></li>
 					</ul>
@@ -77,7 +77,9 @@ function getNewCharCount($id)
 						<li class="transition"><a href="<?php echo $rootfolder."admin/newpass/"; ?>">Neues Passwort vergeben</a></li>
 						<li class="transition"><a href="<?php echo $rootfolder."admin/manage/"; ?>">Manager</a></li>
 						<li class="transition"><a href="<?php echo $rootfolder."admin/settings/"; ?>">Einstellungen</a></li>
-						<li class="transition"><a href="<?php echo $rootfolder."admin/infodesigner/"; ?>">Steckbrief Designer</a></li>
+						<li class="transition"><a href="<?php echo $rootfolder."admin/infodesigner/"; ?>">Steckbrief Designer</a></li>						
+						<li class="transition"><a href="<?php echo $rootfolder."admin/addpoll/"; ?>">Neue Umfrage</a></li>
+						<li class="transition"><a href="<?php echo $rootfolder."session_debug.php"; ?>">Debug</a></li>
 					</ul>
 				</li>
 				<?php } ?>
