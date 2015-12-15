@@ -10,6 +10,11 @@ if(isset($_SESSION['userid']))
 	header('Location: '.$rootfolder);
 	exit;
 }
+if(cookieLogin())
+{
+	header('Location: '.$rootfolder);
+	exit;
+}
 if(isset($_POST['user']) && isset($_POST['pass']))
 {
 	if(login($_POST['user'], $_POST['pass'], $_POST['keks']=="thecakeisalie"))
@@ -66,6 +71,7 @@ if(isset($_POST['user']) && isset($_POST['pass']))
 			if(!error)
 			{
 				$.post( "<?php echo $rootfolder; ?>ajax/login.php", { username: username, password: (""+CryptoJS.MD5(pass)), cookie: (keks?"1":"0")}, function( data) {
+					console.log(data);
 					var res = JSON.parse(data);
 					if(res.status == "200")
 					{						
@@ -87,12 +93,20 @@ if(isset($_POST['user']) && isset($_POST['pass']))
 			}
 			
 		}
+		$( document ).ready(function() {
+    $( "#pass" ).keydown(function( event ) {
+  if ( event.which == 13 ) {login();}
+});
+});
+		
+		
 	</script>
 	<head>
 		<title>Login</title>
 	</head>
 	
 	<body>
+	<?php var_dump($_COOKIE); ?>
 		<div id="error" class="errormsg" style="width: 400px; margin-left: auto; margin-right:auto;"></div>
 		<form action="#" method="post">
 			<table width="300px" border="0" cellpadding="3" cellspacing="1">
