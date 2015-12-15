@@ -152,10 +152,62 @@ include($_SERVER['DOCUMENT_ROOT'].$rootfolder."ajax/news.php");
 				ulL.css("line-height", (20+addh)+"px");
 			}
 		}
+		
+		function spoiler( id )
+		{
+			$('li.transition').mouseenter(function() {
+				$('#info_spoiler td').css("z-index", "-1");
+			});
+			
+			$('li.transition').mouseover(function() {
+				$('#info_spoiler td').css("z-index", "-1");
+			});
+			
+			$('li.transition').mouseleave(function() {
+				$('#info_spoiler td').css("z-index", "");
+			});
+			
+			if($('#'+id).css('display') == 'none')
+			{
+				$('#'+id).slideDown();
+				$('#extend_'+id+' img').attr('src', "<?php echo $rootfolder; ?>images/arrow_down.png");
+			}
+			else
+			{
+				$('#'+id).slideUp();
+				$('#extend_'+id+' img').attr('src', "<?php echo $rootfolder; ?>images/arrow_up.png");
+			}
+		}
 		</script>
 		
 		<h1>Startseite</h1>
-		<h2 id="important_info">Fehler bei Zitaten behoben, Lehrer können nun zitiert werden.</h2>
+		<h2 id="important_info"><i>*Gähn*</i> Ihr habt jetzt Umfragen... Admins erstellen neue Umfragen unter Admin -> Neue Umfrage</h2>
+		<div style="border:1px solid silver; "><div style="text-align:center;" onclick="spoiler('new_album_spoiler')" id="extend_new_album_spoiler" class="buttonlink" title="Mehr laden">
+						<a>Für diejenigen unter euch, die das interessiert<img src="<?php echo $rootfolder; ?>images/arrow_up.png"></a>
+					</div>
+					
+					<div id="new_album_spoiler" style="display: none; border-top: 1px solid silver;">
+					Bekannte Bugs:<br>
+					<br>
+					<ul>
+						<li><s>Favicon</s></li>
+						<li><s>Umfragen</s></li>
+						<li><b>Umfragen Bearbeiten</b></li>
+						<li><s>Login: ENTER Taste funktioniert nicht...</s></li>
+						<li><s>Login: Eingeloggt bleiben derzeit ohne Funktion</s></li>
+						<li>Backup: Wiederherstellen Knopf noch ohne Funktion</li>
+						<li>Backup: Manuelles Backup noch nicht möglich</li>
+						<li>Galerie: Noch nicht auf der Startseite</li>
+						<li>Galerie: Alben können noch nicht bearbeitet werden</li>
+						<li>Galerie: Alben können noch nicht gelöscht werden</li>
+						<li>Galerie: Titel und Beschreibung für Bilder noch nicht implementiert</li>
+						<li>Galerie: Noch nicht für Handys getestet :/ </li>
+						<li><s>Generell: Suchproblem bei Apple Geräten</s></li>
+					</ul><b>Priorität zur Bearbeitung</b><br><br>
+					<br>
+					~ Josh
+					</div></div>
+					<br><br>
 		<table cellspacing="0">
 			<tr>
 				<th class="br">Neuste Aktivität Schüler</th>

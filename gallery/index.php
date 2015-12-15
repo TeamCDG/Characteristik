@@ -536,8 +536,8 @@ div.preview_remove {
 							</tr>
 						</table>
 						<br>
-						<p style="text-align:center;">INFO: Hier eingestellte Rechte überschreiben globale Einstellungen.</p>
-						<table cellspacing="0" id="new_album_permissions" width="100%">
+						<p style="text-align:center;  <?php echo (!$_SESSION['permissions']['admin_manage_user']?" display:none;":""); ?>  ">INFO: Hier eingestellte Rechte überschreiben globale Einstellungen.</p>
+						<table <?php echo (!$_SESSION['permissions']['admin_manage_user']?"style=\"display:none\"":""); ?> cellspacing="0" id="new_album_permissions" width="100%">
 							<tr>
 								<th class="br">Gruppe</th>
 								<th class="br boolcol">Album ansehen</th>

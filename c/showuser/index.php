@@ -441,6 +441,7 @@ $info = mysql_fetch_object($res);
 			
 			var val = $('#charc').val();
 			$.post( "<?php echo $rootfolder; ?>ajax/charedit.php", { type: "0", uid: uid, t: t, content: val}, function( data) {
+				console.log(data);
 				var res = JSON.parse(data);
 				if(res.status == "200")
 				{
@@ -448,7 +449,7 @@ $info = mysql_fetch_object($res);
 					slideDownRow(res.id);
 					$('#charc').val("");
 					$('#charc').focus();
-					
+					console.log(res.post);
 					$('#add_info').css('display', 'none');
 					$('#add_info').html(res.message);
 					$('#add_info').slideDown();

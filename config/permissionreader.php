@@ -7,14 +7,19 @@ if($_SESSION['userid'] == 0)
 	$permissions = mysql_fetch_array($res);
 
 
+	$perm = array();
+	
 	foreach(array_keys($permissions) as $key)
 	{
-		
-		if($key != "name" && $key != "id")
-			$permissions[$key] = true;
+		if(!is_numeric($key))
+		{
+			$perm[$key] = $permissions[$key];
+			if($key != "name" && $key != "id")
+				$perm[$key] = true;
+		}
 	}
 
-	$_SESSION['permissions'] = $permissions;
+	$_SESSION['permissions'] = $perm;
 }
 else
 {
@@ -27,15 +32,19 @@ else
 
 	$permissions = mysql_fetch_array($res);
 
-
+	$perm = array();
+	
 	foreach(array_keys($permissions) as $key)
 	{
-		
-		if($key != "name" && $key != "id")
-			$permissions[$key] = $permissions[$key] == "1";
+		if(!is_numeric($key))
+		{
+			$perm[$key] = $permissions[$key];
+			if($key != "name" && $key != "id")
+				$perm[$key] = $permissions[$key] == "1";
+		}
 	}
 
-	$_SESSION['permissions'] = $permissions;
+	$_SESSION['permissions'] = $perm;
 }
 
 ?>
