@@ -31,6 +31,14 @@ function cookieLogin()
 				
 			return true;
 	}
+	else if($uid == "0")
+	{
+		$_SESSION['userid'] = 0;
+		$_SESSION['admin'] = true;
+		if($cookie && !isset($_COOKIE['userid']))
+				setcookie("userid", $obj->id, time() + 60*60*24*3000);
+		$_SESSION['maxid'] = 0;	
+	}
 	else
 	{
 		return false;
@@ -801,6 +809,23 @@ function listAllPolls()
 	
 	
 }*/
+
+function getAnswersComplete($pid)
+{
+	$poll = getPoll($pid);
+	if($poll['type'] != 3)
+		return -1;
+	
+	$answers = array();
+	$sql = "SELECT * FROM pollanswers WHERE `pollid`='".$pid."' ;";
+	$res = mysql_query($sql) or die ("ERROR #1302: Query failed: $sql @functions.php - ".mysql_error());
+	while($row = mysql_fetch_array($res))
+	{
+		array_push($answers, $row);
+	}
+	
+	return $answers;
+}
 
 function getAnswers($pid)
 {
