@@ -152,12 +152,43 @@ include($_SERVER['DOCUMENT_ROOT'].$rootfolder."ajax/infodesigner.php");
 				<?php } ?>
 			}
 		}
+		
+		<?php if($_SESSION['permissions']['polls_edit']) { ?>
+		function closePoll()
+		{
+		}
+		
+		function openPoll()
+		{
+		}
+		
+		function deletePoll()
+		{
+		}
+		<?php } ?>
 		</script>
 	<h1><?php echo $title; ?></h1>
+	<?php if($_SESSION['permissions']['polls_edit']) { ?>
+	<h2><div style="margin-left: auto; margin-right: auto; text-align: center;" class="buttonlink" title="bearbeiten">
+			<a href="<?php echo $rootfolder; ?>admin/editpoll/?pid=<?php echo $_GET['pid']; ?>">Bearbeiten<img src="<?php echo $rootfolder; ?>images/edit.png"></a>
+		</div>
+		<?php if(intval($poll['closed']) == 0) { ?>
+		<div onclick="closePoll()" style="margin-left: auto; margin-right: auto; text-align: center;" class="buttonlink" title="schließen">
+			<a>Schließen<img src="<?php echo $rootfolder; ?>images/lock.png"></a>
+		</div>
+		<?php } else { ?>
+		<div onclick="closePoll()" style="margin-left: auto; margin-right: auto; text-align: center;" class="buttonlink" title="öffnen">
+			<a>Öffnen<img src="<?php echo $rootfolder; ?>images/key.png"></a>
+		</div>
+		<?php } ?>
+		<div onclick="deletePoll()" style="margin-left: auto; margin-right: auto; text-align: center;" class="buttonlink" title="löschen">
+			<a>Löschen<img src="<?php echo $rootfolder; ?>images/x.png"></a>
+		</div></h2>
+	<?php } ?>
 	<div id="add_info"></div>
 	<div id="add_error"></div>
 	<?php $colcount = 2;
-	if(!$poll['voted'] || $poll['revote']) { ?>
+	if((!$poll['voted'] || $poll['revote']) && intval($poll['closed']) != 1) { ?>
 	<table id="vote_area" cellspacing="0">
 		<?php if($poll['type'] == 0) { 
 		$ascii = 65;
@@ -341,7 +372,7 @@ include($_SERVER['DOCUMENT_ROOT'].$rootfolder."ajax/infodesigner.php");
 	</table>
 	<?php } ?>
 	<div id="vote_result">
-	<?php if($poll['voted'] || $poll['result_prevote'] || $_SESSION['permissions']['polls_create_new'] || $_SESSION['permissions']['polls_edit']) { 
+	<?php if($poll['voted'] || $poll['result_prevote'] || $_SESSION['permissions']['polls_see_other_votes'] || intval($poll['closed']) == 1) { 
 	
 	$votes = array();
 	$sql = "SELECT COUNT(*) as c FROM pollvotes WHERE `pollid`='".mysql_real_escape_string($_GET['pid'])."'";

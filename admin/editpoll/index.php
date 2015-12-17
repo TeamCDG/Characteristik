@@ -3,26 +3,21 @@ $af = str_replace($_SERVER['DOCUMENT_ROOT'], '', str_replace('\\', '/', __DIR__)
 $rootfolder = substr($af, 0, strpos($af, '/c')+2)."/";
 
 include($_SERVER['DOCUMENT_ROOT'].$rootfolder."loginprotection.php");
-$title = "Umfrage hinzufügen";
+
+if(!$_SESSION['permissions']['polls_edit'])
+{
+	header('Location: '.$rootfolder."c/polls/showpoll/?pid=".$_GET['pid']);
+	exit;
+}
+
+$title = "Umfrage bearbeiten";
 ob_end_flush();
 include($_SERVER['DOCUMENT_ROOT'].$rootfolder."layout/head.php");
 include($_SERVER['DOCUMENT_ROOT'].$rootfolder."layout/topnavi.php");
 
-function getGroups()
-{
-	$sql = "SELECT * FROM `permissions`";
-	$res = mysql_query($sql) or die ("ERROR #007: Query failed: $sql @adduser - ".mysql_error());
-
-	$count = mysql_num_rows($res);
-	$i = 0;
-
-	while($row =  mysql_fetch_object($res))
-	{
-		echo "<option value=\"".$row->id."\"".($i==$count-1?"selected":"").">".$row->name."</option>";
-		$i++;
-	}
-}
-
+$poll = getPoll($_GET['pid']);
+$answers = $answers = getAnswers($_GET['pid']);
+//getAnswersComplete
 ?>
 	<style type="text/css">
 		table
@@ -237,8 +232,8 @@ function getGroups()
 		<script>
 		var adding = false;
 		var addAnimationId = -1;
-		var answercount = 2;
-		var nextid = 2;
+		var answercount = <?php echo (intval($poll['type']) == 3)?(count($answers)):2; ?>;
+		var nextid = <?php echo (intval($poll['type']) == 3)?(count($answers)):32; ?>;
 		function removeAnswer(id)
 		{
 			if($("#type").val() == "3")
@@ -301,6 +296,7 @@ function getGroups()
 			var result_pre_vote = $('#result_pre_vote').prop("checked");
 			var type = $('#type').val();
 			var diag = $('#diagram').val();
+			var id = <?php echo $_GET['pid']; ?>;
 			var answers = new Array();
 			
 			if( type == "3")
@@ -336,7 +332,7 @@ function getGroups()
 			console.log(answers); 
 			if(!error)
 			{
-				$.post( "<?php echo $rootfolder; ?>ajax/polledit.php", { type: 0, title: title, revote: revote, multivote: mpc, result_prevote: result_pre_vote, ptype: type, diagram: diag, answers: answers}, function( data) {
+				$.post( "<?php echo $rootfolder; ?>ajax/polledit.php", { type: 1, id: id, title: title, revote: revote, multivote: mpc, result_prevote: result_pre_vote, ptype: type, diagram: diag, answers: answers}, function( data) {
 					<?php if($_SESSION['debug']) { ?> console.log(data); <?php } ?>
 					var res = JSON.parse(data);
 					if(res.status == "200")
@@ -344,23 +340,7 @@ function getGroups()
 						$('#add_info').css('display', 'none');
 						$('#add_info').html(res.message);
 						$('#add_info').slideDown();
-						$('#title').val("");
 						$('#title').focus();
-						if(type == "3")
-						{
-							while($('.answer_text').size() > 2)
-							{
-								$('.answer_text').last().parent().parent().remove();
-							}
-							$('.answer_text').first().attr("id", "#answer_0");
-							$('.answer_text').first().attr("onclick", "removeAnswer(0)");
-							$('.answer_text').last().attr("id", "#answer_1");		
-							$('.answer_text').first().attr("onclick", "removeAnswer(1)");						
-							$('.answer_text').val("");
-							$('#answer_captions').attr("rowspan", 3);
-							nextid = 2;
-							answercount = 2;
-						}
 						<?php if(!$_SESSION['debug']) { ?>
 						addAnimationId = setInterval(function() {
 							clearInterval(addAnimationId);
@@ -404,43 +384,54 @@ function getGroups()
 		<tbody>
 			<tr>
 				<td class="br caption"><div>Titel:</div></td>
-				<td class="b input_container"><input type="text" id="title"></td>
+				<td class="b input_container"><input type="text" id="title" value="<?php echo $poll['title']; ?>"></td>
 			</tr>
 			<tr>
 				<td class="br caption"><div>Revote:</div></td>
-				<td class="b input_container"><input type="checkbox" name="revote" value="revote" id="check_revote"></td>
+				<td class="b input_container"><input type="checkbox" name="revote" value="revote" id="check_revote" <?php if(intval($poll['revote']) == 1) echo "checked=\"checked\""; ?>></td>
 			</tr>
 			<tr>
 				<td class="br caption"><div>Multiple Choice:</div></td>
-				<td class="b input_container"><input type="checkbox" name="mpc" value="mpc" id="check_mpc"></td>
+				<td class="b input_container"><input type="checkbox" name="mpc" value="mpc" id="check_mpc" <?php if(intval($poll['multivote']) == 1) echo "checked=\"checked\""; ?>></td>
 			</tr>
 			<tr>
 				<td class="br caption"><div>Ergebnis auch vor Vote anzeigen:</div></td>
-				<td class="b input_container"><input type="checkbox" name="result_pre_vote" value="result_pre_vote" id="result_pre_vote"></td>
+				<td class="b input_container"><input type="checkbox" name="result_pre_vote" value="result_pre_vote" id="result_pre_vote" <?php if(intval($poll['result_prevote']) == 1) echo "checked=\"checked\""; ?>></td>
 			</tr>
 			<tr>
 				<td class="br caption"><div>Diagrammtyp:</div></td>
-				<td class="b input_container"><select id="diagram"><option value="0" selected>Torten</option></td>
+				<td class="b input_container"><select id="diagram"><option value="0" <?php if(intval(true)) echo "selected=\"selected\""; ?>>Torten</option></td>
 			</tr>
 			<tr>
 				<td class="br caption"><div>Antwortmöglichkeiten:</div></td>
-				<td class="b input_container"><select onchange="pos()" id="type"><option value="0" selected>Schüler</option><option value="1">Lehrer</option><option value="2">Ja/Nein</option><option value="3">Eigene Antworten</option></select></td>
+				<td class="b input_container"><select onchange="pos()" id="type"><option value="0" <?php if(intval($poll['type']) == 0) echo "selected=\"selected\""; ?>>Schüler</option>
+					<option value="1" <?php if(intval($poll['type']) == 1) echo "selected=\"selected\""; ?>>Lehrer</option>
+					<option value="2" <?php if(intval($poll['type']) == 2) echo "selected=\"selected\""; ?>>Ja/Nein</option>
+					<option value="3" <?php if(intval($poll['type']) == 3) echo "selected=\"selected\""; ?>>Eigene Antworten</option></select></td>
 			</tr>
 			<tr>
-				<td rowspan="3" id="answer_captions" class="br caption"><div>Antworten:</div></td>
-				<td class="b"><input class="answer_text" type="text" id="answer_0" disabled>
+				<td rowspan="<?php echo (intval($poll['type']) == 3)?(count($answers) + 1):3; ?>" id="answer_captions" class="br caption"><div>Antworten:</div></td>
+				<td class="b"><input class="answer_text" type="text" id="answer_0" <?php if(intval($poll['type']) != 3) echo "disabled=\"disabled\""; else echo "value=\"".$answers[0]."\""; ?>>
 					<div onclick="removeAnswer(0)" class="buttonlink xButton" title="entfernen">
 						<a><img src="<?php echo $rootfolder; ?>images/x.png"></a>
 					</div>
 				</td>
 			</tr>
+			<?php if(intval($poll['type']) == 3) { for($i = 1; $i < count($answers); $i++) { ?>
 			<tr>
-				<td class="b"><input class="answer_text" type="text" id="answer_1" disabled>
-					<div onclick="removeAnswer(1)" class="buttonlink xButton" title="entfernen">
+				<td class="b"><input class="answer_text" type="text" id="answer_<?php echo $i;?>" <?php if(intval($poll['type']) != 3) echo "disabled=\"disabled\""; else echo "value=\"".$answers[$i]."\""; ?>>
+					<div onclick="removeAnswer(<?php echo $i; ?>)" class="buttonlink xButton" title="entfernen">
 						<a><img src="<?php echo $rootfolder; ?>images/x.png"></a>
 					</div>
 				</td>
 			</tr>
+			<?php }}else{ ?>
+				<td class="b"><input class="answer_text" type="text" id="answer_1" <?php if(intval($poll['type']) != 3) echo "disabled=\"disabled\""; else echo "value=\"".$answers[0]."\""; ?>>
+					<div onclick="removeAnswer(1)" class="buttonlink xButton" title="entfernen">
+						<a><img src="<?php echo $rootfolder; ?>images/x.png"></a>
+					</div>
+				</td>
+			<?php } ?>
 			<tr>
 				<td class="b">
 					<div onclick="addanswer()" style="margin-left: auto; margin-right: auto; text-align: center;" class="buttonlink" title="hinzufügen">
@@ -451,7 +442,7 @@ function getGroups()
 			<tr>
 				<td colspan="2">
 					<div onclick="addpoll()" style="margin-left: auto; margin-right: auto; text-align: center;" class="buttonlink" title="hinzufügen">
-						<a>Hinzufügen<img src="<?php echo $rootfolder; ?>images/plus.png"></a>
+						<a>Speichern<img src="<?php echo $rootfolder; ?>images/save.png"></a>
 					</div>
 				</td>
 			</tr>
