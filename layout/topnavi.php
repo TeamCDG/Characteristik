@@ -72,13 +72,13 @@ function getNewCharCount($id)
 				<li class="transition"><a>Admin</a>
 					<ul>
 						<li class="transition"><a href="<?php echo $rootfolder."admin/request/"; ?>">Löschanfragen</a></li>
-						<li class="transition"><a href="<?php echo $rootfolder."admin/edituser/"; ?>">Nutzer bearbeiten</a></li>
 						<li class="transition"><a href="<?php echo $rootfolder."admin/adduser/"; ?>">Nutzer hinzufügen</a></li>
 						<li class="transition"><a href="<?php echo $rootfolder."admin/newpass/"; ?>">Neues Passwort vergeben</a></li>
 						<li class="transition"><a href="<?php echo $rootfolder."admin/manage/"; ?>">Manager</a></li>
 						<li class="transition"><a href="<?php echo $rootfolder."admin/settings/"; ?>">Einstellungen</a></li>
 						<li class="transition"><a href="<?php echo $rootfolder."admin/infodesigner/"; ?>">Steckbrief Designer</a></li>						
 						<li class="transition"><a href="<?php echo $rootfolder."admin/addpoll/"; ?>">Neue Umfrage</a></li>
+						<li class="transition"><a href="<?php echo $rootfolder."admin/tools/"; ?>">Tools</a></li>
 						<li class="transition"><a href="<?php echo $rootfolder."session_debug.php"; ?>">Debug</a></li>
 					</ul>
 				</li>

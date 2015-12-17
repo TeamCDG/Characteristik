@@ -181,7 +181,7 @@ include($_SERVER['DOCUMENT_ROOT'].$rootfolder."ajax/news.php");
 		</script>
 		
 		<h1>Startseite</h1>
-		<h2 id="important_info"><i>*Gähn*</i> Ihr habt jetzt Umfragen... Admins erstellen neue Umfragen unter Admin -> Neue Umfrage</h2>
+		<h2 id="important_info">Umfragen frei zur Bearbeitung durch Admins. Ich weise nochmals darauf hin, dass Stimmen nur einmal abgegeben werden können und danach nicht veränderbar sind, es sei denn, die Admins erlauben dies beim Erstellen/Bearbeiten der Umfrage...</h2>
 		<div style="border:1px solid silver; "><div style="text-align:center;" onclick="spoiler('new_album_spoiler')" id="extend_new_album_spoiler" class="buttonlink" title="Mehr laden">
 						<a>Für diejenigen unter euch, die das interessiert<img src="<?php echo $rootfolder; ?>images/arrow_up.png"></a>
 					</div>
@@ -192,7 +192,11 @@ include($_SERVER['DOCUMENT_ROOT'].$rootfolder."ajax/news.php");
 					<ul>
 						<li><s>Favicon</s></li>
 						<li><s>Umfragen</s></li>
-						<li><b>Umfragen Bearbeiten</b></li>
+						<li><s>Umfragen Bearbeiten</s></li>						
+						<li><b>Umfragen Öffnen/Schließen</b></li>
+						<li><b>Umfragen Löschen</b></li>
+						<li><b>Nutzer verschmelzen</b></li>
+						<li><b>Nutzer löschen</b></li>
 						<li><s>Login: ENTER Taste funktioniert nicht...</s></li>
 						<li><s>Login: Eingeloggt bleiben derzeit ohne Funktion</s></li>
 						<li>Backup: Wiederherstellen Knopf noch ohne Funktion</li>
