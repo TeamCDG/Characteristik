@@ -39,5 +39,5 @@
 				<a href="<?php echo $rootfolder;?>feedback/?ref=<?php echo str_replace('index.php', '', str_replace($_SERVER['DOCUMENT_ROOT'], '', str_replace('\\', '/', $_SERVER['PHP_SELF']))); ?>">Ein Problem melden<img src="<?php echo $rootfolder; ?>images/info.png"></a>
 			</div>
 		</div>
-	<body>
+	</body>
 </html>

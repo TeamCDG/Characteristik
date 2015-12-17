@@ -80,10 +80,11 @@ else if(isset($_POST['user']) && $_POST['uid']==-1)
 					$( "#search" ).val( ui.item.label );
 					$( "#id" ).val( ui.item.id );
 					$( "#teacher" ).val( ui.item.teacher );
-					//sub();
+					sub();
 					return false;
 				}
 			})
+			
 			.data( "ui-autocomplete" )._renderItem = function( ul, item ) {
 				return $( "<li>" )
 					.append( "<a>" +((item.teacher=="1")?" <font color=\"#FF0000\" >":"")+ item.label + ((item.teacher=="1")?" </font>":"")+  "</a>" )
