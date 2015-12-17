@@ -106,7 +106,7 @@ if(isset($_POST['user']) && isset($_POST['pass']))
 	</head>
 	
 	<body>
-	<?php var_dump($_COOKIE); ?>
+	<?php //var_dump($_COOKIE); ?>
 		<div id="error" class="errormsg" style="width: 400px; margin-left: auto; margin-right:auto;"></div>
 		<form action="#" method="post">
 			<table width="300px" border="0" cellpadding="3" cellspacing="1">
