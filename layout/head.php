@@ -47,7 +47,7 @@ else if(isset($_POST['user']) && $_POST['uid']==-1)
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 		
 		<link rel="stylesheet" href="<?php echo $rootfolder;?>style/skin0.css">
-		<link rel="icon" href="<?php echo $rootfolder;?>images/crow.ico" type="image/x-icon" />
+		<link rel="icon" href="<?php echo $rootfolder;?>images/ccrow.ico" type="image/x-icon" />
 		<style type="text/css">
 		<?php include($_SERVER['DOCUMENT_ROOT'].$rootfolder."layout/layout.php"); ?>
 		</style>
