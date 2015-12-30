@@ -23,6 +23,10 @@
                =++%%%%+/:-.</pre><?php } ?>
 		</div>
 		<div id="footer"> 
+			<div style="float: left; margin-top: 6px;">
+				<?php echo $version; ?> - 
+			</div>
+			
 			<div id="keks" <?php if(isset($_COOKIE['userid'])) { ?> title="Du bleibst auf diesem Gerät eingeloggt, bis du dich ausloggst"<?php } else { ?> title="Du wirst auf diesem gerät ausgeloggt, sobald du die Seite schließt" <?php } ?>>
 				Keks: <?php echo isset($_COOKIE['userid'])?"yep":"nope";  if(isset($_COOKIE['userid'])) { ?><img width="20px" height="20px" src="<?php echo $rootfolder; ?>images/cookie.png"> <?php } ?>
 			</div>

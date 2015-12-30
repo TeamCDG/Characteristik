@@ -6,7 +6,7 @@ ob_start();
 $_SESSION['mobile']= (bool)preg_match('#\b(ip(hone|od|ad)|android|opera m(ob|in)i|windows (phone|ce)|blackberry|tablet'.
                     '|s(ymbian|eries60|amsung)|p(laybook|alm|rofile/midp|laystation portable)|nokia|fennec|htc[\-_]'.
                     '|mobile|up\.browser|[1-4][0-9]{2}x[1-4][0-9]{2})\b#i', $_SERVER['HTTP_USER_AGENT'] );
-$version="0.2.0";
+$version="0.2.0 dev";
 include("functions.php");
 header('Content-Type: text/html; charset=utf-8');
 include($_SERVER['DOCUMENT_ROOT'].$rootfolder."config/settingsreader.php");
