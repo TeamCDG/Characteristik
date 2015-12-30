@@ -36,7 +36,19 @@ if(!$include)
 			if( isset($_POST['uid1']) && isset($_POST['uid2'])  && isset($_POST['uidn'])  && isset($_POST['t']))
 			{
 				merge($_POST['uid1'], $_POST['uid2'], $_POST['uidn'], $_POST['t']);
-				die(json_encode(array("status" => 200, "message"=>"erfolgreich abgestimmt", "vote_result"=>$vtr, "hv"=>$hv, "post"=>$_POST)));
+				die(json_encode(array("status" => 200, "message"=>"erfolgreich verschmolzen", "post"=>$_POST)));
+			}
+			else
+			{
+				die("{\"status\":406, \"message\":\"post parameter wrong\"}");
+			}
+		}
+		else if(intval($_POST['tool']) == 1)
+		{			
+			if( isset($_POST['uid']) && isset($_POST['t']) )
+			{
+				delete($_POST['uid'], $_POST['t']);
+				die(json_encode(array("status" => 200, "message"=>"erfolgreich gelöscht", "post"=>$_POST)));
 			}
 			else
 			{
@@ -154,5 +166,85 @@ function merge($uid1, $uid2, $uidn, $t)
 	}
 }
 
+function delete($uid, $t)
+{
+	if($_SESSION['permissions']['admin_manage_user'])
+	{
+		//update pollvotes
+		$sql = "DELETE `pollvotes` FROM `pollvotes` INNER JOIN  `polls` ON  `pollvotes`.`pollid` =  `polls`.`id` WHERE  ((`polls`.`type` = '0' OR `polls`.`type`= '1') AND  `pollvotes`.`voteid` = '".$uid."') OR `pollvotes`.`voter` = '".$uid."'; ";
+		mysql_query($sql) or die ("ERROR: Query failed: $sql @".__FILE__.":".__FUNCTION__."(".__LINE__.") - ".mysql_error());
+		//update char
+		if(intval($t) == 0)
+		{
+			$sql = "DELETE FROM `uchar` WHERE  `from` = '".$uid."' OR `holder` = '".$uid."'; ";
+			mysql_query($sql) or die ("ERROR: Query failed: $sql @".__FILE__.":".__FUNCTION__."(".__LINE__.") - ".mysql_error());
+		}
+		else
+		{
+			$sql = "DELETE FROM `tchar` WHERE  `holder` = '".$uid."'; ";
+			mysql_query($sql) or die ("ERROR: Query failed: $sql @".__FILE__.":".__FUNCTION__."(".__LINE__.") - ".mysql_error());
+		}		
+		//update cit
+		if(intval($t) == 0)
+		{
+			$sql = "DELETE FROM  `cit` WHERE  `poster` = '".$uid."'; ";
+			mysql_query($sql) or die ("ERROR: Query failed: $sql @".__FILE__.":".__FUNCTION__."(".__LINE__.") - ".mysql_error());
+		}
+		
+		$sql = "DELETE FROM `cit` WHERE  `holder` = '".$uid."' AND `teacher` = '".$t."'; ";
+		mysql_query($sql) or die ("ERROR: Query failed: $sql @".__FILE__.":".__FUNCTION__."(".__LINE__.") - ".mysql_error());
+		//update gossip
+		if(intval($t) == 0)
+		{
+			$sql = "DELETE FROM `gossip` WHERE  `poster` = '".$uid."'; ";
+			mysql_query($sql) or die ("ERROR: Query failed: $sql @".__FILE__.":".__FUNCTION__."(".__LINE__.") - ".mysql_error());
+		}
+		//update request
+		if(intval($t) == 0)
+		{
+			$sql = "DELETE FROM  `request` WHERE  `from` = '".$uid."'; ";
+			mysql_query($sql) or die ("ERROR: Query failed: $sql @".__FILE__.":".__FUNCTION__."(".__LINE__.") - ".mysql_error());
+		}
+		//update changes
+		if(intval($t) == 0)
+		{
+			$sql = "DELETE FROM  `changes`  WHERE  `from` = '".$uid."'; ";
+			mysql_query($sql) or die ("ERROR: Query failed: $sql @".__FILE__.":".__FUNCTION__."(".__LINE__.") - ".mysql_error());
+		}
+		//update info
+		if(intval($t) == 0)
+		{
+			$sql = "DELETE FROM `info` WHERE  `uid` = '".$uid."'; ";
+			mysql_query($sql) or die ("ERROR: Query failed: $sql @".__FILE__.":".__FUNCTION__."(".__LINE__.") - ".mysql_error());
+		}
+		//update snakescore
+		if(intval($t) == 0)
+		{
+			$sql = "DELETE FROM  `snakescore` WHERE  `uid` = '".$uid."'; ";
+			mysql_query($sql) or die ("ERROR: Query failed: $sql @".__FILE__.":".__FUNCTION__."(".__LINE__.") - ".mysql_error());
+		}
+		//update albums
+		if(intval($t) == 0)
+		{
+			$sql = "DELETE FROM `albums` WHERE  `creator` = '".$uid."'; ";
+			mysql_query($sql) or die ("ERROR: Query failed: $sql @".__FILE__.":".__FUNCTION__."(".__LINE__.") - ".mysql_error());
+		}
+		//finally delete
+		if(intval($t) == 0)
+		{
+			$sql = "DELETE FROM `user` WHERE  `id` = '".$uid."'; ";
+			mysql_query($sql) or die ("ERROR: Query failed: $sql @".__FILE__.":".__FUNCTION__."(".__LINE__.") - ".mysql_error());
+		}
+		else
+		{
+			$sql = "DELETE FROM `teacher` WHERE  `id` = '".$uid."'; ";
+			mysql_query($sql) or die ("ERROR: Query failed: $sql @".__FILE__.":".__FUNCTION__."(".__LINE__.") - ".mysql_error());
+		}		
+	}
+	else
+	{
+		die ("ERROR: Denied @".__FILE__.":".__FUNCTION__."(".__LINE__.") - You do not have permission to do that (\"polls_edit\")");
+	}
+}
 
 ?>

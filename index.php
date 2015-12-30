@@ -195,8 +195,8 @@ include($_SERVER['DOCUMENT_ROOT'].$rootfolder."ajax/news.php");
 						<li><s>Umfragen Bearbeiten</s></li>						
 						<li><b>Umfragen Öffnen/Schließen</b></li>
 						<li><b>Umfragen Löschen</b></li>
-						<li><b>Nutzer verschmelzen</b></li>
-						<li><b>Nutzer löschen</b></li>
+						<li><s>Nutzer verschmelzen</s></li>
+						<li><s>Nutzer löschen</s></li>
 						<li><s>Login: ENTER Taste funktioniert nicht...</s></li>
 						<li><s>Login: Eingeloggt bleiben derzeit ohne Funktion</s></li>
 						<li>Backup: Wiederherstellen Knopf noch ohne Funktion</li>

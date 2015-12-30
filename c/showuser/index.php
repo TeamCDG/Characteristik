@@ -772,8 +772,37 @@ $info = mysql_fetch_object($res);
 				.unwrapInner('div.innerwrapper')
 			});
 		}
+		<?php if($_SESSION['permissions']['admin_manage_user']) { ?>
+		var deleting = false;
+		function del()
+		{
+			if(deleting) return;
+			deleting = true;
+			var uid = <?php echo $_GET['uid']; ?>;
+			var t = <?php echo (isset($_GET['t']) && intval($_GET['t']) == 1 ?"1":"0"); ?>;
+			if(confirm("Benutzer wirklich löschen? Alle Daten gehen unwiederbringlich verloren!!")){
+				$.post( "<?php echo $rootfolder; ?>ajax/tools.php", { tool: 1, uid: uid, t: t}, function( data) {
+					<?php if($_SESSION['debug']) { ?> console.log(data); <?php } echo "\n"; ?>
+					var res = JSON.parse(data);
+					
+					alert(res.message);
+					if(res.status == "200")
+						window.location = "<?php echo $rootfolder; ?>";
+					deleting = false;
+				});
+			}
+		}
+		<?php } ?>
 		</script>
 	<h1><?php echo $title; ?></h1>
+		<?php if($_SESSION['permissions']['admin_manage_user']) { ?>
+	<h2><div style="margin-left: auto; margin-right: auto; text-align: center;" class="buttonlink" title="bearbeiten">
+			<a href="<?php echo $rootfolder; ?>admin/edituser/?uid=<?php echo $_GET['uid']; ?>&t=<?php echo $_GET['t']; ?>">Bearbeiten<img src="<?php echo $rootfolder; ?>images/edit.png"></a>
+		</div>
+		<div onclick="del()" style="margin-left: auto; margin-right: auto; text-align: center;" class="buttonlink" title="löschen">
+			<a>Löschen<img src="<?php echo $rootfolder; ?>images/x.png"></a>
+		</div></h2>
+	<?php } ?>
 	<p>
 		<font id="info_errormsg" class="errormsg" style="display: none;">
 			<?php
