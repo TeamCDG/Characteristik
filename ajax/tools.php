@@ -178,6 +178,8 @@ function delete($uid, $t)
 		{
 			$sql = "DELETE FROM `uchar` WHERE  `from` = '".$uid."' OR `holder` = '".$uid."'; ";
 			mysql_query($sql) or die ("ERROR: Query failed: $sql @".__FILE__.":".__FUNCTION__."(".__LINE__.") - ".mysql_error());
+			$sql = "DELETE FROM `tchar` WHERE  `from` = '".$uid."'; ";
+			mysql_query($sql) or die ("ERROR: Query failed: $sql @".__FILE__.":".__FUNCTION__."(".__LINE__.") - ".mysql_error());
 		}
 		else
 		{
