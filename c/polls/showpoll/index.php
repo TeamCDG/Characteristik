@@ -154,12 +154,37 @@ include($_SERVER['DOCUMENT_ROOT'].$rootfolder."ajax/infodesigner.php");
 		}
 		
 		<?php if($_SESSION['permissions']['polls_edit']) { ?>
+		var closing = false;
 		function closePoll()
 		{
+			if(closing) return;
+			closing = true;
+			var pid = <?php echo $_GET['pid']; ?>;
+			$.post( "<?php echo $rootfolder; ?>ajax/polledit.php", { type: 2, id: pid}, function( data) {
+				<?php if($_SESSION['debug']) { ?> console.log(data); <?php } echo "\n"; ?>
+				var res = JSON.parse(data);
+					
+				alert(res.message);
+				if(res.status == "200")
+					window.location = "<?php echo $rootfolder; ?>/c/polls/showpoll/?pid=<?php echo $_GET['pid']; ?>";
+				deleting = false;
+			});
 		}
 		
 		function openPoll()
 		{
+			if(closing) return;
+			closing = true;
+			var pid = <?php echo $_GET['pid']; ?>;
+			$.post( "<?php echo $rootfolder; ?>ajax/polledit.php", { type: 4, id: pid}, function( data) {
+				<?php if($_SESSION['debug']) { ?> console.log(data); <?php } echo "\n"; ?>
+				var res = JSON.parse(data);
+					
+				alert(res.message);
+				if(res.status == "200")
+					window.location = "<?php echo $rootfolder; ?>/c/polls/showpoll/?pid=<?php echo $_GET['pid']; ?>";
+				deleting = false;
+			});
 		}
 		
 		function deletePoll()
@@ -173,11 +198,11 @@ include($_SERVER['DOCUMENT_ROOT'].$rootfolder."ajax/infodesigner.php");
 			<a href="<?php echo $rootfolder; ?>admin/editpoll/?pid=<?php echo $_GET['pid']; ?>">Bearbeiten<img src="<?php echo $rootfolder; ?>images/edit.png"></a>
 		</div>
 		<?php if(intval($poll['closed']) == 0) { ?>
-		<div onclick="closePoll()" style="margin-left: auto; margin-right: auto; text-align: center;" class="buttonlink" title="schließen">
+		<div id="closePoll" onclick="closePoll()" style="margin-left: auto; margin-right: auto; text-align: center;" class="buttonlink" title="schließen">
 			<a>Schließen<img src="<?php echo $rootfolder; ?>images/lock.png"></a>
 		</div>
 		<?php } else { ?>
-		<div onclick="closePoll()" style="margin-left: auto; margin-right: auto; text-align: center;" class="buttonlink" title="öffnen">
+		<div id="openPoll" onclick="openPoll()" style="margin-left: auto; margin-right: auto; text-align: center;" class="buttonlink" title="öffnen">
 			<a>Öffnen<img src="<?php echo $rootfolder; ?>images/key.png"></a>
 		</div>
 		<?php } ?>
@@ -370,6 +395,8 @@ include($_SERVER['DOCUMENT_ROOT'].$rootfolder."ajax/infodesigner.php");
 		</div>
 	</td></tr>
 	</table>
+	<?php } else if (intval($poll['closed']) == 1) { ?>
+	<h2><img style="width: 24px; height: 24px; vertical-align: middle;" src="<?php echo $rootfolder; ?>images/lock.png"> Die Umfrage ist geschlossen, daher kann nicht mehr abgestimmt werden. <img style="width: 24px; height: 24px; vertical-align: middle;" src="<?php echo $rootfolder; ?>images/lock.png"></h2>
 	<?php } ?>
 	<div id="vote_result">
 	<?php if($poll['voted'] || $poll['result_prevote'] || $_SESSION['permissions']['polls_see_other_votes'] || intval($poll['closed']) == 1) { 

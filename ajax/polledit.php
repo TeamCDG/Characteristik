@@ -59,6 +59,7 @@ if(!$include)
 					echo json_encode($arr);
 					break;
 				case 2:
+					closePoll($_POST['id']);
 					echo json_encode(array("status" => 200, "message"=>"erfolgreich geschlossen", "id"=>$_POST['id'], "post"=>$_POST));
 					break;
 				case 3:
@@ -66,6 +67,7 @@ if(!$include)
 					echo json_encode(array("status" => 200, "message"=>"erfolgreich gelöscht", "id"=>$_POST['id'], "post"=>$_POST));
 					break;
 				case 4:
+					openPoll($_POST['id']);
 					echo json_encode(array("status" => 200, "message"=>"erfolgreich erneut geöffnet", "id"=>$_POST['id'], "post"=>$_POST));
 					break;
 			}

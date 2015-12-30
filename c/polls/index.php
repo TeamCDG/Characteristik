@@ -28,7 +28,7 @@ include($_SERVER['DOCUMENT_ROOT'].$rootfolder."ajax/infodesigner.php");
 	foreach($polls as $poll)
 	{
 		if(!$poll['voted'])
-			echo "<li><a href=\"showpoll/?pid=".$poll['id']."\" >".$poll['title']."</a></li>";
+			echo "<li><a href=\"showpoll/?pid=".$poll['id']."\" >".$poll['title']."</a>".(intval($poll['closed'])==1?"<img style=\"width: 20px; height: 20px; vertical-align: middle;\" src=\"".$rootfolder."images/lock.png\">":"")."</li>";
 	}
 	?>	
 	</ul>
@@ -38,7 +38,7 @@ include($_SERVER['DOCUMENT_ROOT'].$rootfolder."ajax/infodesigner.php");
 	foreach($polls as $poll)
 	{
 		if($poll['voted'])
-			echo "<li><a href=\"showpoll/?pid=".$poll['id']."\" >".$poll['title']."</a></li>";
+			echo "<li><a href=\"showpoll/?pid=".$poll['id']."\" >".$poll['title']."</a>".(intval($poll['closed'])==1?"<img style=\"width: 20px; height: 20px; vertical-align: middle;\" src=\"".$rootfolder."images/lock.png\">":"")."</li>";
 	}
 	?>	
 	</ul>
