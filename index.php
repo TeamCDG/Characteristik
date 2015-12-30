@@ -183,34 +183,69 @@ include($_SERVER['DOCUMENT_ROOT'].$rootfolder."ajax/news.php");
 		<h1>Startseite</h1>
 		<h2 id="important_info">Umfragen frei zur Bearbeitung durch Admins. Ich weise nochmals darauf hin, dass Stimmen nur einmal abgegeben werden können und danach nicht veränderbar sind, es sei denn, die Admins erlauben dies beim Erstellen/Bearbeiten der Umfrage...</h2>
 		<div style="border:1px solid silver; "><div style="text-align:center;" onclick="spoiler('new_album_spoiler')" id="extend_new_album_spoiler" class="buttonlink" title="Mehr laden">
-						<a>Für diejenigen unter euch, die das interessiert<img src="<?php echo $rootfolder; ?>images/arrow_up.png"></a>
+						<a>Roadmap<img src="<?php echo $rootfolder; ?>images/arrow_up.png"></a>
 					</div>
 					
 					<div id="new_album_spoiler" style="display: none; border-top: 1px solid silver;">
-					Bekannte Bugs:<br>
-					<br>
+					<div style="margin-left: 2px">
+					v0.2.0:
 					<ul>
 						<li><s>Favicon</s></li>
 						<li><s>Umfragen</s></li>
-						<li><s>Umfragen Bearbeiten</s></li>						
-						<li><b>Umfragen Öffnen/Schließen</b></li>
-						<li><b>Umfragen Löschen</b></li>
-						<li><s>Nutzer verschmelzen</s></li>
-						<li><s>Nutzer löschen</s></li>
-						<li><s>Login: ENTER Taste funktioniert nicht...</s></li>
-						<li><s>Login: Eingeloggt bleiben derzeit ohne Funktion</s></li>
-						<li>Backup: Wiederherstellen Knopf noch ohne Funktion</li>
-						<li>Backup: Manuelles Backup noch nicht möglich</li>
-						<li>Galerie: Noch nicht auf der Startseite</li>
-						<li>Galerie: Alben können noch nicht bearbeitet werden</li>
-						<li>Galerie: Alben können noch nicht gelöscht werden</li>
-						<li>Galerie: Titel und Beschreibung für Bilder noch nicht implementiert</li>
-						<li>Galerie: Noch nicht für Handys getestet :/ </li>
+						<li><s>Umfragen: Bearbeiten</s></li>		
+						<li><s>Nutzer: löschen</s></li>						
+						<li><s>Nutzer: verschmelzen</s></li>
+						<li><b>Umfragen: Öffnen/Schließen</b></li>
+						<li><i>Umfragen: Löschen</i></li>
+						<li><i>Nutzer: Bearbeiten</i></li>
+					</ul>
+					v0.2.1:
+					<ul>						
+						<li>Generell: Copy & Paste Funktionalität</li>
+					</ul>
+					v0.3.0:
+					<ul>						
+						<li>Backup: Wiederherstellen</li>
+						<li>Backup: Manuelles Backup</li>
+						<li>Backup: Verlauf</li>
+						<li>Startseite: Galerie hinzufügen</li>
+						<li>Termine: Mit Funktionalität versehen</li>
+					</ul>
+					v0.4.0:
+					<ul>
+						<li>Galerie: Alben Bearbeiten</li>
+						<li>Galerie: Alben Löschen</li>
+						<li>Galerie: Bilder Titel & Beschreibung</li>
+						<li>Galerie: verhübschen </li>
+						<li>Komitees: Mit Funktionalität versehen</li>
+						<li>Generell: Statistiken</li>
+						<li>Generell: Automatisierte Erinnerungen</li>
+					</ul>
+					v0.5.0:
+					<ul>
+						<li>Login: verhübschen</li>
+						<li>Permissions: (Gruppen)Manager</li>
+						<li>Generell: Polieren</li>
+					</ul>
+					v0.6.0:
+					<ul>
+						<li>Generell: Mobile Version</li>
+					</ul>
+					v0.7.0:
+					<ul>
+						<li>Generell: Skins</li>
+					</ul>
+					
+					<br>
+					known bugs:
+					<ul>
 						<li><s>Generell: Suchproblem bei Apple Geräten</s></li>
-					</ul><b>Priorität zur Bearbeitung</b><br><br>
+					</ul>
+					<b>In Bearbeitung</b><br>
+					<i>In Planung</i><br>
 					<br>
 					~ Josh
-					</div></div>
+					</div></div></div>
 					<br><br>
 		<table cellspacing="0">
 			<tr>
