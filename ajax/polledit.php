@@ -63,7 +63,7 @@ if(!$include)
 					echo json_encode(array("status" => 200, "message"=>"erfolgreich geschlossen", "id"=>$_POST['id'], "post"=>$_POST));
 					break;
 				case 3:
-					deltePoll($_POST['id']);
+					deletePoll($_POST['id']);
 					echo json_encode(array("status" => 200, "message"=>"erfolgreich gelöscht", "id"=>$_POST['id'], "post"=>$_POST));
 					break;
 				case 4:
@@ -85,9 +85,21 @@ if(!$include)
 }
 
 
-function deletePoll($pid)
+function deletePoll($id)
 {
-	//$_SESSION['permissions']['admin_backup_restore'];
+	if($_SESSION['permissions']['polls_edit'])
+	{
+		$sql = "DELETE FROM polls WHERE `id`='".$id."'";
+		mysql_query($sql) or die ("ERROR: Query failed: $sql @".__FILE__.":".__FUNCTION__."(".__LINE__.") - ".mysql_error());
+		$sql = "DELETE FROM pollvotes WHERE `pollid`='".$id."'";
+		mysql_query($sql) or die ("ERROR: Query failed: $sql @".__FILE__.":".__FUNCTION__."(".__LINE__.") - ".mysql_error());
+		$sql = "DELETE FROM pollanswers WHERE `pollid`='".$id."'";
+		mysql_query($sql) or die ("ERROR: Query failed: $sql @".__FILE__.":".__FUNCTION__."(".__LINE__.") - ".mysql_error());
+	}
+	else
+	{
+		die ("ERROR: Denied @".__FILE__.":".__FUNCTION__."(".__LINE__.") - You do not have permission to do that (\"polls_edit\")");
+	}
 }
 
 function closePoll($id)

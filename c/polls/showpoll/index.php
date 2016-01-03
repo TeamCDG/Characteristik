@@ -154,11 +154,11 @@ include($_SERVER['DOCUMENT_ROOT'].$rootfolder."ajax/infodesigner.php");
 		}
 		
 		<?php if($_SESSION['permissions']['polls_edit']) { ?>
-		var closing = false;
+		var action = false;
 		function closePoll()
 		{
-			if(closing) return;
-			closing = true;
+			if(action) return;
+			action = true;
 			var pid = <?php echo $_GET['pid']; ?>;
 			$.post( "<?php echo $rootfolder; ?>ajax/polledit.php", { type: 2, id: pid}, function( data) {
 				<?php if($_SESSION['debug']) { ?> console.log(data); <?php } echo "\n"; ?>
@@ -167,14 +167,14 @@ include($_SERVER['DOCUMENT_ROOT'].$rootfolder."ajax/infodesigner.php");
 				alert(res.message);
 				if(res.status == "200")
 					window.location = "<?php echo $rootfolder; ?>/c/polls/showpoll/?pid=<?php echo $_GET['pid']; ?>";
-				deleting = false;
+				action = false;
 			});
 		}
 		
 		function openPoll()
 		{
-			if(closing) return;
-			closing = true;
+			if(action) return;
+			action = true;
 			var pid = <?php echo $_GET['pid']; ?>;
 			$.post( "<?php echo $rootfolder; ?>ajax/polledit.php", { type: 4, id: pid}, function( data) {
 				<?php if($_SESSION['debug']) { ?> console.log(data); <?php } echo "\n"; ?>
@@ -183,12 +183,26 @@ include($_SERVER['DOCUMENT_ROOT'].$rootfolder."ajax/infodesigner.php");
 				alert(res.message);
 				if(res.status == "200")
 					window.location = "<?php echo $rootfolder; ?>/c/polls/showpoll/?pid=<?php echo $_GET['pid']; ?>";
-				deleting = false;
+				clsoing = false;
 			});
 		}
 		
 		function deletePoll()
 		{
+			if(action) return;
+			if(confirm("Umfrage wirklich löschen? Alle Daten gehen unwiederbringlich verloren!!")){
+				action = true;
+				var pid = <?php echo $_GET['pid']; ?>;
+				$.post( "<?php echo $rootfolder; ?>ajax/polledit.php", { type: 3, id: pid}, function( data) {
+					<?php if($_SESSION['debug']) { ?> console.log(data); <?php } echo "\n"; ?>
+					var res = JSON.parse(data);
+						
+					alert(res.message);
+					if(res.status == "200")
+						window.location = "<?php echo $rootfolder; ?>/c/polls";
+					action = false;
+				});
+			}
 		}
 		<?php } ?>
 		</script>

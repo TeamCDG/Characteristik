@@ -196,8 +196,8 @@ include($_SERVER['DOCUMENT_ROOT'].$rootfolder."ajax/news.php");
 						<li><s>Nutzer: löschen</s></li>						
 						<li><s>Nutzer: verschmelzen</s></li>
 						<li><s>Umfragen: Öffnen/Schließen</s></li>
-						<li><b>Umfragen: Löschen</b></li>
-						<li><i>Nutzer: Bearbeiten</i></li>
+						<li><s>Umfragen: Löschen</s></li>
+						<li><b>Nutzer: Bearbeiten</b></li>
 					</ul>
 					v0.2.1:
 					<ul>						
