@@ -128,7 +128,7 @@ function getAllJSON_user()
 	$res = mysql_query($sql) or die ("ERROR #017: Query failed: $sql @functions.php - ".mysql_error());
 	while($row = mysql_fetch_object($res))
 	{
-		echo "{id:\"".$row->id."\",teacher:\"0\",label:\"".$row->prename." ".$row->name."\"},";
+		echo "{id:\"".$row->id."\",teacher:\"0\",label:\"".$row->prename." ".$row->name."\",name:\"".$row->name."\",prename:\"".$row->prename."\"},";
 	}
 }
 
@@ -138,7 +138,7 @@ function getAllJSON_piclist()
 	$res = mysql_query($sql) or die ("ERROR #017: Query failed: $sql @functions.php - ".mysql_error());
 	while($row = mysql_fetch_object($res))
 	{
-		if(!inPiclist($row->id)) echo "{id:\"".$row->id."\",teacher:\"0\",label:\"".$row->prename." ".$row->name."\"},";
+		if(!inPiclist($row->id)) echo "{id:\"".$row->id."\",teacher:\"0\",label:\"".$row->prename." ".$row->name."\",name:\"".$row->name."\",prename:\"".$row->prename."\"},";
 	}
 }
 
@@ -148,14 +148,14 @@ function getAllJSON_cit()
 	$res = mysql_query($sql) or die ("ERROR #017: Query failed: $sql @functions.php - ".mysql_error());
 	while($row = mysql_fetch_object($res))
 	{
-		echo "{id:\"".$row->id."\",teacher:\"0\",label:\"".$row->prename." ".$row->name."\"},";
+		echo "{id:\"".$row->id."\",teacher:\"0\",label:\"".$row->prename." ".$row->name."\",name:\"".$row->name."\",prename:\"".$row->prename."\"},";
 	}
 	
 	$sql = "SELECT * FROM `teacher` ";
 	$res = mysql_query($sql) or die ("ERROR #018: Query failed: $sql @functions.php - ".mysql_error());
 	while($row = mysql_fetch_object($res))
 	{
-		echo "{id:\"".$row->id."\",teacher:\"1\",label:\"".$row->prename." ".$row->name."\"},";
+		echo "{id:\"".$row->id."\",teacher:\"1\",label:\"".$row->prename." ".$row->name."\",name:\"".$row->name."\",prename:\"".$row->prename."\"},";
 	}
 }
 
@@ -165,16 +165,34 @@ function getAllJSON()
 	$res = mysql_query($sql) or die ("ERROR #017: Query failed: $sql @functions.php - ".mysql_error());
 	while($row = mysql_fetch_object($res))
 	{
-		echo "{id:\"".$row->id."\",teacher:\"0\",label:\"".$row->prename." ".$row->name."\"},";
+		echo "{id:\"".$row->id."\",teacher:\"0\",label:\"".$row->prename." ".$row->name."\",name:\"".$row->name."\",prename:\"".$row->prename."\"},";
 	}
 	
 	$sql = "SELECT * FROM `teacher` WHERE `visible`='1'";
 	$res = mysql_query($sql) or die ("ERROR #018: Query failed: $sql @functions.php - ".mysql_error());
 	while($row = mysql_fetch_object($res))
 	{
-		echo "{id:\"".$row->id."\",teacher:\"1\",label:\"".$row->prename." ".$row->name."\"},";
+		echo "{id:\"".$row->id."\",teacher:\"1\",label:\"".$row->prename." ".$row->name."\",name:\"".$row->name."\",prename:\"".$row->prename."\"},";
 	}
 }
+
+function getAllJSON_complete()
+{
+	$sql = "SELECT * FROM `user` WHERE `stillthere` = 1";
+	$res = mysql_query($sql) or die ("ERROR #017: Query failed: $sql @functions.php - ".mysql_error());
+	while($row = mysql_fetch_object($res))
+	{
+		echo "{id:\"".$row->id."\",teacher:\"0\",label:\"".$row->prename." ".$row->name."\",name:\"".$row->name."\",prename:\"".$row->prename."\",group:\"".$row->group."\",com:\"".$row->com."\"},";
+	}
+	
+	$sql = "SELECT * FROM `teacher` WHERE `visible`='1'";
+	$res = mysql_query($sql) or die ("ERROR #018: Query failed: $sql @functions.php - ".mysql_error());
+	while($row = mysql_fetch_object($res))
+	{
+		echo "{id:\"".$row->id."\",teacher:\"1\",label:\"".$row->prename." ".$row->name."\",name:\"".$row->name."\",prename:\"".$row->prename."\"},";
+	}
+}
+
 
 function getAllUser($onlyStillThere = true, $orderBy = 'id')
 {
