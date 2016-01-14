@@ -188,7 +188,7 @@ include($_SERVER['DOCUMENT_ROOT'].$rootfolder."ajax/news.php");
 					
 					<div id="new_album_spoiler" style="display: none; border-top: 1px solid silver;">
 					<div style="margin-left: 2px">
-					v0.2.0:
+					v0.2.0 (14.01.16):
 					<ul>
 						<li><s>Favicon</s></li>
 						<li><s>Umfragen</s></li>
@@ -197,13 +197,15 @@ include($_SERVER['DOCUMENT_ROOT'].$rootfolder."ajax/news.php");
 						<li><s>Nutzer: verschmelzen</s></li>
 						<li><s>Umfragen: Öffnen/Schließen</s></li>
 						<li><s>Umfragen: Löschen</s></li>
-						<li><b>Nutzer: Bearbeiten</b></li>
+						<li><s>Nutzer: Bearbeiten</s></li>
 					</ul>
-					v0.2.1:
+					v0.2.1 (~22.01.16):
 					<ul>						
-						<li>Generell: Copy & Paste Funktionalität</li>
+						<li><b>Charakteristik: Copy & Paste Funktionalität</b></li>
+						<li>Tools: Nutzer verstecken</li>						
+						<li>Generell: Automatisierte Erinnerungen</li>
 					</ul>
-					v0.3.0:
+					v0.3.0 (~ early Feb 2016):
 					<ul>						
 						<li>Backup: Wiederherstellen</li>
 						<li>Backup: Manuelles Backup</li>
@@ -211,7 +213,7 @@ include($_SERVER['DOCUMENT_ROOT'].$rootfolder."ajax/news.php");
 						<li>Startseite: Galerie hinzufügen</li>
 						<li>Termine: Mit Funktionalität versehen</li>
 					</ul>
-					v0.4.0:
+					v0.4.0 (~ late Feb 2016):
 					<ul>
 						<li>Galerie: Alben Bearbeiten</li>
 						<li>Galerie: Alben Löschen</li>
@@ -219,20 +221,19 @@ include($_SERVER['DOCUMENT_ROOT'].$rootfolder."ajax/news.php");
 						<li>Galerie: verhübschen </li>
 						<li>Komitees: Mit Funktionalität versehen</li>
 						<li>Generell: Statistiken</li>
-						<li>Generell: Automatisierte Erinnerungen</li>
 					</ul>
-					v0.5.0:
+					v0.5.0 (~ Mar 2016):
 					<ul>
 						<li>Login: verhübschen</li>
 						<li>Permissions: (Gruppen)Manager</li>
 						<li>Generell: Polieren</li>
 						<li>Major Refactoring</li>
 					</ul>
-					v0.6.0:
+					v0.6.0 (far future):
 					<ul>
 						<li>Generell: Mobile Version</li>
 					</ul>
-					v0.7.0:
+					v0.7.0 (possibly never):
 					<ul>
 						<li>Generell: Skins</li>
 					</ul>
