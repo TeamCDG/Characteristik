@@ -343,7 +343,6 @@ function getUserArray($uid, $t)
 		
 		function toggleGroup()
 		{
-			alert($('#type').val() );
 			if($('#type').val() == "0")
 			{
 				$('#group').prop( "disabled", false );
