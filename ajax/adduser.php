@@ -36,7 +36,7 @@ if(!$include)
 			}
 			
 			$sql = "INSERT INTO `user`(`name`, `prename`, `username`, `password`, `admin`, `style`, `stillthere`, `group`) VALUES ('".mysql_real_escape_string($_POST['lastname']).
-			"','".mysql_real_escape_string($_POST['prename'])."','".mysql_real_escape_string($username)."','".mysql_real_escape_string(md5("BAUM"))."','0','0','1','".mysql_real_escape_string($_POST['group'])."')";
+			"','".mysql_real_escape_string($_POST['prename'])."','".mysql_real_escape_string($username)."','".mysql_real_escape_string(md5(strval(mt_rand())."BAUM"))."','0','0','1','".mysql_real_escape_string($_POST['group'])."')";
 			mysql_query($sql) or die ("{\"status\":500, \"message\":\"ERROR #011 Query failed: $sql @ajax/adduser.php - ".mysql_error()."\"}");
 		}
 		else
