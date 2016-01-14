@@ -53,7 +53,11 @@ function getUserArray($uid, $t)
 		return getUser($uid);
 }
 ?>
-
+	
+	<?php 
+		$t = isset($_GET['t']) && (intval($_GET['t']) == 1 || $_GET['t'] == "true");
+		$u = getUserArray($_GET['uid'], $t); 
+	?>
 	<style type="text/css">
 		table
 		{
@@ -256,7 +260,7 @@ function getUserArray($uid, $t)
 		<script>
 		var editing = false;
 		var addAnimationId = -1;
-		var initialTeacher = <?php echo $t?"true":"false"; ?>;
+		var initialTeacher = <?php echo $t?"1":"0"; ?>;
 		var id = <?php echo $_GET['uid']; ?>;
 		
 		function adduser()
@@ -298,7 +302,7 @@ function getUserArray($uid, $t)
 			
 			if(!error)
 			{
-				$.post( "<?php echo $rootfolder; ?>ajax/edituser.php", { prename: prename, lastname: lastname, type: type, group: group, id: id, initialTeacher: initialTeacher}, function( data) {
+				$.post( "<?php echo $rootfolder; ?>ajax/edituser.php", { prename: prename, lastname: lastname, type: type, group: group, id: id, initialTeacher: initialTeacher, com: -1}, function( data) {
 					<?php if($_SESSION['debug']) { ?> console.log(data); <?php } ?>
 					var res = JSON.parse(data);
 					if(res.status == "200")
@@ -352,17 +356,82 @@ function getUserArray($uid, $t)
 				$('#group').prop( "disabled", true );
 			}
 		}
+		
+		$(function() {
+			var names = [<?php 
+								getAllJSON_complete();
+							?>
+			];
+
+			$( "#edituser" ).autocomplete({
+				minLength: 0,
+				source: names,
+				focus: function( event, ui ) {
+					$( "#edituser" ).val( ui.item.label + "");
+					return false;
+				},
+				select: function( event, ui ) {
+					$( "#edituser" ).val( ui.item.label + "");
+					id = parseInt(ui.item.id);
+					initialTeacher = parseInt(ui.item.teacher);
+					
+					$("#prename").val(ui.item.prename);
+					$("#lastname").val(ui.item.name);
+					
+					$('#type').val(ui.item.teacher);
+					if(parseInt(ui.item.teacher) == 0)
+					{
+						$("#group").val(ui.item.group);
+						$('#group').prop( "disabled", false );
+					}
+					else
+					{
+						$('#group').prop( "disabled", true );
+					}
+					//sub();
+					return false;
+				}
+			})
+			.data( "ui-autocomplete" )._renderItem = function( ul, item ) {
+				return $( "<li>" )
+					.append( "<a>" +((item.teacher=="1")?" <font color=\"#FF0000\" >":"")+ item.label + "" + ((item.teacher=="1")?" </font>":"")+  "</a>" )
+					.appendTo( ul );
+			};
+			
+		});
+		
+		function edituser()
+		{
+			$('#selectuser').hide();
+			$('#editbox').show();
+		}
 		</script>
 	<h1><?php echo $title; ?></h1>
 	
-	<?php 
-		$t = isset($_GET['t']) && (intval($_GET['t']) == 1 || $_GET['t'] == "true");
-		$u = getUserArray($_GET['uid'], $t); 
-	?>
+	<?php if(!$u) { ?>
+	<table cellspacing="0" id="selectuser">
+		<tbody>
+			<tr>
+				<td class="b" colspan="2"><div>Der ausgewählte Nutzer existiert nicht (mehr), es kann aber ein anderer zu Bearbeitung ausgewählt werden.</div></td>
+			</tr>
+			<tr>
+				<td class="br caption"><div>Nutzer:</div></td>
+				<td class="b input_container"><input type="text" id="edituser" value="<?php echo $u['name']; ?>"></td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<div onclick="edituser()" style="margin-left: auto; margin-right: auto;" class="buttonlink editbutton" title="bearbeiten">
+						<a>Bearbeiten<img src="<?php echo $rootfolder; ?>images/edit.png"></a>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<?php } ?>
 	
 	<div id="add_error" class="errormsg" style="width: 400px; margin-left: auto; margin-right:auto;"></div>
 	<div id="add_info" class="infomsg" style="width: 400px; margin-left: auto; margin-right:auto;"></div>
-	<table cellspacing="0" >
+	<table cellspacing="0" id="editbox" <?php if(!$u) echo "style=\"display: none;\""; ?>>
 		<tbody>
 			<tr>
 				<td class="br caption"><div>Vorname:</div></td>
@@ -389,7 +458,6 @@ function getUserArray($uid, $t)
 			</tr>
 		</tbody>
 	</table>
-	</p>
 <?php 
 include($_SERVER['DOCUMENT_ROOT'].$rootfolder."layout/footer.php");
 ?>
