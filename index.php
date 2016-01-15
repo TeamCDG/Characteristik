@@ -249,6 +249,7 @@ include($_SERVER['DOCUMENT_ROOT'].$rootfolder."ajax/news.php");
 					~ Josh
 					</div></div></div>
 					<br><br>
+
 		<table cellspacing="0">
 			<tr>
 				<th class="br">Neuste Aktivität Schüler</th>

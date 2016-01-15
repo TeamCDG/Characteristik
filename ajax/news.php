@@ -50,7 +50,7 @@ function news($type, $min, $count, $rootfolder)
 	}
 	
 	
-	
+	if(isset($_GET['min']) && $_GET['min']=="-1") exit;
 	$sql = "SELECT * FROM `".mysql_real_escape_string($table)."` WHERE `visible` = 1 ".($min == -1?"":"AND `id` < '".mysql_real_escape_string($min)."'")." ORDER BY `id` DESC LIMIT ".mysql_real_escape_string($count);
 	$res = mysql_query($sql) or die ("ERROR #027: Query failed: $sql @functions.php - ".mysql_error());
 
