@@ -81,11 +81,7 @@ else if(isset($_POST['uid']) && $_POST['uid']==-1)
 					$( "#search" ).val( ui.item.label );
 					$( "#id" ).val( ui.item.id );
 					$( "#teacher" ).val( ui.item.teacher );
-<<<<<<< HEAD
-					sub();
-=======
 					$("#searchform").submit();
->>>>>>> master
 					return false;
 				}
 			})

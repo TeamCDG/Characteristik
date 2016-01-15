@@ -299,6 +299,27 @@ include($_SERVER['DOCUMENT_ROOT'].$rootfolder."ajax/infodesigner.php");
 					.append( "<a>" +((item.teacher=="1")?" <font color=\"#FF0000\" >":"")+ item.label + " (ID: " + item.id + ")" + ((item.teacher=="1")?" </font>":"")+  "</a>" )
 					.appendTo( ul );
 			};
+			
+			$( "#user_hide" ).autocomplete({
+				minLength: 0,
+				source: names,
+				focus: function( event, ui ) {
+					$( "#user_hide" ).val( ui.item.label + " (ID: " + ui.item.id + ")");
+					return false;
+				},
+				select: function( event, ui ) {
+					$( "#user_hide" ).val( ui.item.label + " (ID: " + ui.item.id + ")");
+					$( "#user_hide_id" ).val( ui.item.id );
+					$( "#user_hide_teacher" ).val( ui.item.teacher );
+					//sub();
+					return false;
+				}
+			})
+			.data( "ui-autocomplete" )._renderItem = function( ul, item ) {
+				return $( "<li>" )
+					.append( "<a>" +((item.teacher=="1")?" <font color=\"#FF0000\" >":"")+ item.label + " (ID: " + item.id + ")" + ((item.teacher=="1")?" </font>":"")+  "</a>" )
+					.appendTo( ul );
+			};
 		});
 		
 		<?php if($_SESSION['permissions']['admin_manage_user']) { ?>
@@ -449,7 +470,7 @@ include($_SERVER['DOCUMENT_ROOT'].$rootfolder."ajax/infodesigner.php");
 			}
 		}
 		
-				var deleting = false;
+		var deleting = false;
 		var deleteAnimationId = -1;
 		function del()
 		{
@@ -523,6 +544,81 @@ include($_SERVER['DOCUMENT_ROOT'].$rootfolder."ajax/infodesigner.php");
 				<?php } ?>
 			}
 		}
+		
+		var hiding = false;
+		var hideAnimationId = -1;
+		function hide()
+		{
+			if(hiding) return;
+			hiding = true;
+			
+			$('#hide_info').html("");
+			$('#hide_error').html("");
+			clearInterval(hideAnimationId);
+			
+			var error = false;
+			var uid = $('#user_hide_id').val();
+			var t = $('#user_hide_teacher').val();
+			
+			if(uid == undefined || uid.trim().length == 0)
+			{
+				$('#hide_error').html($('#hide_error').html()+"<br>"+"Bitte Nutzer zum Löschen aus der Liste auswählen!");
+				$('#user_hide').css('border-color', 'red');
+				error = true;
+			}
+			else if(!error)
+			{
+				$('#user_hide').css('border-color', '');
+			}
+			
+			if(!error)
+			{
+				$.post( "<?php echo $rootfolder; ?>ajax/tools.php", { tool: 2, uid: uid, t: t}, function( data) {
+					<?php if($_SESSION['debug']) { ?> console.log(data); <?php } echo "\n"; ?>
+					var res = JSON.parse(data);
+					if(res.status == "200")
+					{						
+						$('#hide_info').css('display', 'none');
+						$('#hide_info').html($('#add_info').html() + res.message);
+						$('#hide_info').slideDown();
+						
+						$('#user_hide').val("");
+						$('#user_hide_id').val("");
+						$('#user_hide_teacher').val("");
+						<?php if(!$_SESSION['debug']) { ?>
+						hideAnimationId = setInterval(function() {
+							clearInterval(hideAnimationId);
+							$('#hide_info').slideUp();
+						}, 3000);
+						<?php } ?>
+					}
+					else
+					{
+						$('#hide_error').css('display', 'none');
+						$('#hide_error').html(res.message);
+						$('#hide_error').slideDown();
+						<?php if(!$_SESSION['debug']) { ?>
+						hideAnimationId = setInterval(function() {
+							clearInterval(hideAnimationId);
+							$('#hide_error').slideUp();
+						}, 5000);
+						<?php } ?>
+					}
+					hiding = false;
+				});
+			}
+			else
+			{
+				$('#hide_error').slideDown();
+				hiding = false;
+				<?php if(!$_SESSION['debug']) { ?>
+				hideAnimationId = setInterval(function() {
+					clearInterval(hideAnimationId);
+					$('#hide_error').slideUp();
+				}, 5000);
+				<?php } ?>
+			}
+		}
 		<?php } ?>
 		</script>
 	<h1><?php echo $title; ?></h1>
@@ -556,6 +652,28 @@ include($_SERVER['DOCUMENT_ROOT'].$rootfolder."ajax/infodesigner.php");
 	</table>
 	</div>
 	<hr>
+	<h2>Nutzer verstecken</h2>
+	<div style="width: 600px; margin-left: auto; margin-right:auto;">
+	<h3>Versteckt einen Nutzer. Behält alle Datensätze, Nutzer ist lediglich nicht mehr über die Suche/Auflistung zu finden.</h3>
+	<div id="hide_error" class="errormsg" style="width: 600px; margin-left: auto; margin-right:auto;"></div>
+	<div id="hide_info" class="infomsg" style="width: 600px; margin-left: auto; margin-right:auto;"></div>
+	<table cellspacing="0" >
+		<tbody>
+			<tr>
+				<td class="br caption"><div>Nutzer:</div></td>
+				<td class="br input_container"><input type="text" id="user_hide"><input type="hidden" id="user_hide_teacher"><input type="hidden" id="user_hide_id"></td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<div onclick="hide()" style="margin-left: auto; margin-right: auto; text-align:center;" class="buttonlink" title="verstecken">
+						<a>Verstecken<img src="<?php echo $rootfolder; ?>images/x.png"></a>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	</div>
+	<hr>
 	<h2>Nutzer löschen</h2>
 	<div style="width: 600px; margin-left: auto; margin-right:auto;">
 	<h3>Löscht alle Datensätze, die der Nutzer erstellt hat, oder die diesen Nutzer beinhalten. Es ist, als habe der Nutzer nie existiert.<br><span style="color: #ff2222;"><b>WARNUNG: </b>Daten gehen unwiederbringlich verloren.</h3>
@@ -576,7 +694,6 @@ include($_SERVER['DOCUMENT_ROOT'].$rootfolder."ajax/infodesigner.php");
 			</tr>
 		</tbody>
 	</table>
-	</div>
 	<?php } ?>
 	<div align="center" style="margin-left: auto; margin-right:auto;"><img src="<?php echo $rootfolder; ?>images/construction.png" style="width:200px; height: 200px;"></div>
 <?php 

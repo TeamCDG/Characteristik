@@ -6,6 +6,7 @@
 //------------------------------------------------------------------
 //				|			|			| 0: merge user
 //				|			|			| 1: delete user
+//				|			|			| 2: hide user
 //------------------------------------------------------------------
 //	uid1		| post		| int		| user id of first user to merge
 //------------------------------------------------------------------
@@ -55,6 +56,18 @@ if(!$include)
 				die("{\"status\":406, \"message\":\"post parameter wrong\"}");
 			}
 		}
+		else if(intval($_POST['tool']) == 2)
+		{			
+			if( isset($_POST['uid']) && isset($_POST['t']) )
+			{
+				hide($_POST['uid'], $_POST['t']);
+				die(json_encode(array("status" => 200, "message"=>"erfolgreich versteckt", "post"=>$_POST)));
+			}
+			else
+			{
+				die("{\"status\":406, \"message\":\"post parameter wrong\"}");
+			}
+		}
 	}
 	else
 	{
@@ -63,6 +76,19 @@ if(!$include)
 	
 }
 
+function hide($uid, $t)
+{
+	$sql = "";
+	if(intval($t) == 0)
+	{
+		$sql = "UPDATE  `user` SET  `stillthere` = '0' WHERE  `id` = '".$uid."'; ";
+	}
+	else
+	{
+		$sql = "UPDATE  `teacher` SET  `visible` = '0' WHERE  `id` = '".$uid."'; ";
+	}
+	mysql_query($sql) or die ("ERROR: Query failed: $sql @".__FILE__.":".__FUNCTION__."(".__LINE__.") - ".mysql_error());
+}
 
 function merge($uid1, $uid2, $uidn, $t)
 {
