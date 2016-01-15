@@ -1,35 +1,27 @@
 <?php
-session_start();
-
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 ob_start();
 $_SESSION['mobile']= (bool)preg_match('#\b(ip(hone|od|ad)|android|opera m(ob|in)i|windows (phone|ce)|blackberry|tablet'.
                     '|s(ymbian|eries60|amsung)|p(laybook|alm|rofile/midp|laystation portable)|nokia|fennec|htc[\-_]'.
                     '|mobile|up\.browser|[1-4][0-9]{2}x[1-4][0-9]{2})\b#i', $_SERVER['HTTP_USER_AGENT'] );
+$version="0.2.0 dev";
 include("functions.php");
 header('Content-Type: text/html; charset=utf-8');
 include($_SERVER['DOCUMENT_ROOT'].$rootfolder."config/settingsreader.php");
 if(!isset($_SESSION['userid']) && !cookieLogin())
 {
-	header('Location: login.php');
+	header('Location: '.$rootfolder.'login.php');
 	exit;
 }
 else
 {
-	if(!isset($_COOKIE['maxid']))
+	if(!isset($_SESSION['maxid']))
 	{
-		if(!isset($_SESSION['maxid']))
-		{
-			setcookie("maxid", 0, time() + 60*60*24*3000, '/');
-		}
-		else
-		{
-			setcookie("maxid", $_SESSION['maxid'], time() + 60*60*24*3000, '/');
-		}
+		$_SESSION['maxid'] = getMaxId($_SESSION['userid']);
 	}
-	else if(intval($_COOKIE['maxid']) <  intval($_SESSION['maxid']))
-	{
-		setcookie("maxid", $_SESSION['maxid'], time() + 60*60*24*3000, '/');
-	}
+
 	
 	if(!isset($_COOKIE['hidemyass']))
 	{
@@ -58,6 +50,22 @@ else
 	
 }
 
+$res = mysql_query("SELECT * FROM `backup` ORDER BY `id` DESC LIMIT 1") or die ("ERROR #LEL: Query failed: $sql @connect.php - ".mysql_error());;
+$b = mysql_fetch_object($res);
 
+if( (strtotime("now")-strtotime($b->date))/3600 > intval($_SESSION['backup_delta']))
+{
+	include("backup.php");
+	$bres = @backup($_SESSION['backup_compression'], $_SESSION['backup_send_mail'], $_SESSION['backup_email'], $_SESSION['backup_folder'], $dbname, $c);
+	$sql = "INSERT INTO `backup` VALUES (NULL, NULL, '".((int)$bres['sentmail'])."', '".$bres['mailreciever']."', '".$bres['filename']."', '0', '0');";
+	mysql_query($sql) or die ("ERROR #LEL: Query failed: $sql @connect.php - ".mysql_error());
+}
+
+function getMaxId($id)
+{
+	$sql = "SELECT * FROM `user` WHERE `id`='".mysql_real_escape_string($id)."';";
+	$res = mysql_query($sql) or die("ERROR 418: Query failed: ".$sql." ".mysql_error());
+	return mysql_fetch_object($res)->lastseen;
+}
 include($_SERVER['DOCUMENT_ROOT'].$rootfolder."config/permissionreader.php");
 ?>

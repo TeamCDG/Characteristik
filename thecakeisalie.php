@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("connect.php");
+include("functions.php");
 //Creates pie diagram based on the data given via get parameters
 //Copyright (C) 2013  Joshua Theis <http://cdg.bplaced.net>
 //
@@ -32,37 +32,76 @@ include("connect.php");
 //param "hl": the headline over the legend (default: "Legend")
 //param "as": true if the size of the image should be autosized with it's content (default: true)
 //param "pollid": id of the poll
+//param "bgcol": hexadezimal color of background
+//param "fontcol": hexadezimal color of font
 
 function drawLine($degree, $img, $width, $height, $centerX, $centerY, $color)
 {
 	imageline($img, $centerX, $centerY, round($centerX+cos(deg2rad($degree)) * $width,0), round($centerY+sin(deg2rad($degree)) * $height,0), $color); 
 }
+define('EMPTY_STRING', '');
 
-/*function entenc($text)
-{
-	$text = (string) $text;
-	$text_out = "";
-	
-	for($i = 0, $n = strlen($text); $i < $n; $i++) {
-		$text_out .= "&#".ord($text[$i]).";";
-		}
-		
-	return $text_out;
-}*/
+function foxy_utf8_to_nce( 
+  $utf = EMPTY_STRING 
+) { 
+  if($utf == EMPTY_STRING) return($utf); 
 
-function entenc($text)
-{
-	$text = $text;
-    $res = '';
-    for ($i = 0; $i < strlen($text); $i++)
-    {
-        $cc = ord($text{$i});
-        if ($cc >= 128 || $cc == 38)
-            $res .= "&#$cc;";
-        else
-            $res .= chr($cc);
-    }
-    return $res;
+  $max_count = 5; // flag-bits in $max_mark ( 1111 1000 == 5 times 1) 
+  $max_mark = 248; // marker for a (theoretical ;-)) 5-byte-char and mask for a 4-byte-char; 
+
+  $html = EMPTY_STRING; 
+  for($str_pos = 0; $str_pos < strlen($utf); $str_pos++) { 
+    $old_chr = $utf{$str_pos}; 
+    $old_val = ord( $utf{$str_pos} ); 
+    $new_val = 0; 
+
+    $utf8_marker = 0; 
+
+    // skip non-utf-8-chars 
+    if( $old_val > 127 ) { 
+      $mark = $max_mark; 
+      for($byte_ctr = $max_count; $byte_ctr > 2; $byte_ctr--) { 
+        // actual byte is utf-8-marker? 
+        if( ( $old_val & $mark  ) == ( ($mark << 1) & 255 ) ) { 
+          $utf8_marker = $byte_ctr - 1; 
+          break; 
+        } 
+        $mark = ($mark << 1) & 255; 
+      } 
+    } 
+
+    // marker found: collect following bytes 
+    if($utf8_marker > 1 and isset( $utf{$str_pos + 1} ) ) { 
+      $str_off = 0; 
+      $new_val = $old_val & (127 >> $utf8_marker); 
+      for($byte_ctr = $utf8_marker; $byte_ctr > 1; $byte_ctr--) { 
+
+        // check if following chars are UTF8 additional data blocks 
+        // UTF8 and ord() > 127 
+        if( (ord($utf{$str_pos + 1}) & 192) == 128 ) { 
+          $new_val = $new_val << 6; 
+          $str_off++; 
+          // no need for Addition, bitwise OR is sufficient 
+          // 63: more UTF8-bytes; 0011 1111 
+          $new_val = $new_val | ( ord( $utf{$str_pos + $str_off} ) & 63 ); 
+        } 
+        // no UTF8, but ord() > 127 
+        // nevertheless convert first char to NCE 
+        else { 
+          $new_val = $old_val; 
+        } 
+      } 
+      // build NCE-Code 
+      $html .= '&#'.$new_val.';'; 
+      // Skip additional UTF-8-Bytes 
+      $str_pos = $str_pos + $str_off; 
+    } 
+    else { 
+      $html .= chr($old_val); 
+      $new_val = $old_val; 
+    } 
+  } 
+  return($html); 
 }
 
 header ('Content-Type: image/png');
@@ -145,7 +184,7 @@ if(isset($_GET["font"]))
 }
 else
 {
-	$ttf = "fonts/font.ttf";
+	$ttf = "fonts/consolas.ttf";
 }
 
 if(isset($_GET["fsize"]))
@@ -157,25 +196,27 @@ else
 	$ttfsize = 10;
 }
 
+$poll = getPoll($_GET['pid']);
+$answers = getAnswers($_GET['pid']);
 
-$sql = "SELECT * FROM polls WHERE `id`='".mysql_real_escape_string($_GET['pollid'])."'";
-$res = mysql_query($sql) or die ("ERROR #030: Query failed: $sql @thecakeisalie.php - ".mysql_error());
-$hl = utf8_encode(entenc(mysql_fetch_object($res)->title));
+$hl = utf8_encode(foxy_utf8_to_nce($poll['title']));
 
 
 
-$pie3D = ($_GET["3D"] || !isset($_GET["3D"])) && $_GET["3D"] != "false";
-$al = $_GET["al"] || $_GET["al"]=="true";
+$pie3D = true;
+if(isset($_GET["3D"])) $pie3D = ($_GET["3D"] || !isset($_GET["3D"])) && $_GET["3D"] != "false";
+$al = true;
+if(isset($_GET["al"])) $al = $_GET["al"] || $_GET["al"]=="true";
 $votes = array(); //0 => absolute vote count; 1 => text
 $vcount = 0;
 
 
 
-$sql = "SELECT COUNT(*) as c FROM pollvotes WHERE `pollid`='".mysql_real_escape_string($_GET['pollid'])."'";
+$sql = "SELECT COUNT(*) as c FROM pollvotes WHERE `pollid`='".mysql_real_escape_string($_GET['pid'])."'";
 $res = mysql_query($sql) or die ("ERROR #031: Query failed: $sql @thecakeisalie.php - ".mysql_error());
 $vcount = mysql_fetch_object($res)->c;
 
-$sql = "SELECT COUNT(*) as c, voteid FROM pollvotes WHERE `pollid`='".mysql_real_escape_string($_GET['pollid'])."' GROUP BY voteid ORDER BY c DESC";
+$sql = "SELECT COUNT(*) as c, voteid FROM pollvotes WHERE `pollid`='".mysql_real_escape_string($_GET['pid'])."' GROUP BY voteid ORDER BY c DESC";
 $res = mysql_query($sql) or die ("ERROR #032: Query failed: $sql @thecakeisalie.php - ".mysql_error());
 
 $c = 0;
@@ -187,12 +228,7 @@ while($row = mysql_fetch_object($res))
 	
 	$allco += $row->c;
 	
-	$sql = "SELECT * FROM pollanswers WHERE `pollid`=".mysql_real_escape_string($_GET['pollid'])." AND `voteid`=".$row->voteid."";
-	$r = mysql_query($sql) or die ("ERROR #033: Query failed: $sql @thecakeisalie.php - ".mysql_error());
-	
-	$obj = mysql_fetch_object($r);
-	
-	array_push($tmp, $obj->text);
+	array_push($tmp, $answers[$row->voteid]);
 	
 	array_push($votes, $tmp);
 	$c++;
@@ -213,7 +249,7 @@ if($as)
 	for($c = 0; $c < count($votes); $c++)
 	{
 		$txt = ": ".$votes[$c][1]." ".$votes[$c][0]."/".$vcount." (".round((100.0 / floatval($vcount)) * $votes[$c][0], 2)."%)";
-		$edge = imagettfbbox($ttfsize, 0, $ttf, utf8_encode(entenc($txt)));
+		$edge = imagettfbbox($ttfsize, 0, $ttf, utf8_encode(foxy_utf8_to_nce($txt)));
 		if($pie_x+($pie_width/2)+44+abs($edge[4])+$ttfsize > $width)
 		{
 			$width = $pie_x+($pie_width/2)+44+abs($edge[4])+$ttfsize;
@@ -237,7 +273,26 @@ if($as)
 
 $img = @imagecreatetruecolor($width, $height) or die('Cannot Initialize new GD image stream');
 
-$linecolor = ImageColorAllocate($img, 0, 0, 0);
+$linecolor = null; 
+if(isset($_GET['fontcol']))
+{
+	$linecolor = ImageColorAllocate($img, hexdec(substr($_GET['fontcol'], 0, 2)), hexdec(substr($_GET['fontcol'], 2, 2)), hexdec(substr($_GET['fontcol'], 4, 2)));
+}
+else
+{
+	$linecolor = ImageColorAllocate($img, 0, 0, 0);
+}
+
+$bgcol = null;
+if(isset($_GET['bgcol']))
+{
+	$bgcol = ImageColorAllocate($img, hexdec(substr($_GET['bgcol'], 0, 2)), hexdec(substr($_GET['bgcol'], 2, 2)), hexdec(substr($_GET['bgcol'], 4, 2)));
+}
+else
+{
+	$bgcol = ImageColorAllocate($img, 255, 255, 255);
+}
+
 $colors = array(0=>ImageColorAllocate($img, 222, 222, 222), ImageColorAllocate($img, 222, 0, 0), ImageColorAllocate($img, 0, 222, 0), 
 				   ImageColorAllocate($img, 0, 0, 222), ImageColorAllocate($img, 222, 222, 0), ImageColorAllocate($img, 222, 0, 222),
 				   ImageColorAllocate($img, 52, 52, 52), ImageColorAllocate($img, 110, 0, 0), ImageColorAllocate($img, 0, 110, 0), 
@@ -248,7 +303,7 @@ $colors_dark = array(0=>ImageColorAllocate($img, 170, 170, 170), ImageColorAlloc
 						ImageColorAllocate($img, 0, 0, 0), ImageColorAllocate($img, 58, 0, 0), ImageColorAllocate($img, 0, 58, 0), 
 						ImageColorAllocate($img, 0, 0, 58), ImageColorAllocate($img, 58, 58, 58), ImageColorAllocate($img, 58, 0, 58));
 
-imagefilledrectangle($img,0,0,$width-1,$height-1,ImageColorAllocate($img, 255, 255, 255));
+imagefilledrectangle($img,0,0,$width-1,$height-1,$bgcol);
 imageantialias($img,$al);
 
 if(!isset($_SESSION['userid']))
@@ -258,8 +313,10 @@ if(!isset($_SESSION['userid']))
 	imagedestroy($img);
 	die();
 }
-
-imagettftext($img, $ttfsize+8, 0, 24, 30, $linecolor, $ttf, $hl);
+if($pie3D)
+	imagettftext($img, $ttfsize+8, 0, 24, 30, $linecolor, $ttf, $hl);
+else
+	imagettftext($img, $ttfsize+8, 0, $pie_x+($pie_width/2)+24, 30, $linecolor, $ttf, $hl);
 
 if($pie3D && $vcount > 0)
 {	
@@ -293,7 +350,7 @@ if($pie3D && $vcount > 0)
 		$y = 40+20*($i);
 		imagefilledrectangle($img, $x, $y, $x+20, $y+20, $colors[$i]);
 		imagerectangle($img, $x, $y, $x+20, $y+20,$linecolor);
-		imagettftext($img, $ttfsize, 0, $pie_x+($pie_width/2)+44, 40+20*($i+1), $linecolor, $ttf, utf8_encode(entenc($txt)));
+		imagettftext($img, $ttfsize, 0, $pie_x+($pie_width/2)+44, 40+20*($i+1), $linecolor, $ttf, foxy_utf8_to_nce($txt));
 		imagefilledarc($img, $pie_x, $pie_y, $pie_width, $pie_height, $last_degree, $degree, $colors[$i], IMG_ARC_PIE);
 		imagearc($img,$pie_x, $pie_y, $pie_width, $pie_height, $last_degree, $degree, $linecolor);	
 				
@@ -337,7 +394,7 @@ else if($vcount > 0)
 		$y = 40+20*($i);
 		imagefilledrectangle($img, $x, $y, $x+20, $y+20,$colors[$i]);
 		imagerectangle($img, $x, $y, $x+20, $y+20,$linecolor);
-		imagettftext($img, $ttfsize, 0, $pie_x+($pie_width/2)+44, 40+20*($i+1), $linecolor, $ttf, utf8_encode(entenc($txt)));
+		imagettftext($img, $ttfsize, 0, $pie_x+($pie_width/2)+44, 40+20*($i+1), $linecolor, $ttf, foxy_utf8_to_nce($txt));
 		imagefilledarc($img, $pie_x, $pie_y, $pie_width, $pie_width, $last_degree, $degree, $colors[$i], IMG_ARC_PIE);
 		imagearc($img,$pie_x, $pie_y, $pie_width, $pie_width, $last_degree, $degree, $linecolor);	
 				

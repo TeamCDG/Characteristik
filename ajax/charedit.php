@@ -39,11 +39,12 @@ if(!$include)
 			{
 				case 0:
 					$id = addChar($_POST['uid'], $t, $_POST['content']);
-					echo "{\"status\":200, \"message\":\"erfolgreich hinzugefügt\", \"id\":".$id.", \"name\":\"".getName($_SESSION['userid'], 0)."\"}";
+					echo json_encode(array("status" => 200, "message"=>"erfolgreich hinzugefügt", "id"=>$id, "name"=>getName($_SESSION['userid'], 0), "post"=>$_POST));
+					//echo "{\"status\":200, \"message\":\"erfolgreich hinzugefügt\", \"id\":".$id.", \"name\":\"".getName($_SESSION['userid'], 0)."\"}";
 					break;
 				case 1:
 					updateChar($_POST['id'], $t, $_POST['content']);
-					echo "{\"status\":200, \"message\":\"erfolgreich bearbeitet\"}";
+					echo json_encode(array("status" => 200, "message"=>"erfolgreich bearbeitet", "id"=>$_POST['id'], "post"=>$_POST));
 					break;
 				case 2:
 					addRequest($_POST['id'], $t, $_POST['content']);

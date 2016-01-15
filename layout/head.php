@@ -1,5 +1,7 @@
 <?php 
 include($_SERVER['DOCUMENT_ROOT'].$rootfolder."ajax/guessid.php");
+
+$illuminati = isset($_GET['illuminati']);
 if(isset($_POST['uid']) && $_POST['uid']!=-1)
 {
 	if(isset($_POST['teacher']))
@@ -21,7 +23,10 @@ else if(isset($_POST['uid']) && $_POST['uid']==-1)
 	}
 	else
 	{
-		//var_dump($_POST);
+		if(strtolower($_POST['user']) == "illuminati")
+		{
+			$illuminati = true;
+		}
 	}
 }
 ?>
@@ -43,6 +48,7 @@ else if(isset($_POST['uid']) && $_POST['uid']==-1)
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
 		
 		<link rel="stylesheet" href="<?php echo $rootfolder;?>style/skin0.css">
+		<link rel="icon" href="<?php echo $rootfolder;?>images/ccrow.ico" type="image/x-icon" />
 		<style type="text/css">
 		<?php include($_SERVER['DOCUMENT_ROOT'].$rootfolder."layout/layout.php"); ?>
 		</style>
@@ -51,6 +57,11 @@ else if(isset($_POST['uid']) && $_POST['uid']==-1)
 		<script src="//code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
 		<script src="<?php echo $rootfolder;?>lib/randint.js"></script>
 		<script src="<?php echo $rootfolder;?>lib/unwrapinner.js"></script>
+		<script src="<?php echo $rootfolder;?>lib/jquery.form.min.js"></script>
+		
+		<script src="<?php echo $rootfolder;?>lib/lightbox/js/lightbox-2.6.js"></script>
+		<link href="<?php echo $rootfolder;?>lib/lightbox/css/lightbox.css" rel="stylesheet" />
+		
 		<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/md5.js"></script>
 		<script>
 		$(function() {
@@ -70,16 +81,22 @@ else if(isset($_POST['uid']) && $_POST['uid']==-1)
 					$( "#search" ).val( ui.item.label );
 					$( "#id" ).val( ui.item.id );
 					$( "#teacher" ).val( ui.item.teacher );
+<<<<<<< HEAD
+					sub();
+=======
 					$("#searchform").submit();
+>>>>>>> master
 					return false;
 				}
 			})
+			
 			.data( "ui-autocomplete" )._renderItem = function( ul, item ) {
 				return $( "<li>" )
 					.append( "<a>" +((item.teacher=="1")?" <font color=\"#FF0000\" >":"")+ item.label + ((item.teacher=="1")?" </font>":"")+  "</a>" )
 					.appendTo( ul );
 			};
 		});
+		
 		</script>
 		<script type="text/javascript">
 		function sub()
@@ -92,4 +109,46 @@ else if(isset($_POST['uid']) && $_POST['uid']==-1)
 
 			
 	</head>
-	<body>
+	<body <?php if($illuminati) { ?>  onkeydown="unilluminati()" <?php } ?> >
+	<?php if($illuminati) { ?>
+		<div onload="setvol();" id="illuminati" style="width: 800px; height: 800px; z-index: 599; pointer-events: none; left: calc(50% - 400px); position: absolute;">
+			<img id="illuminati_image" width="800px" height="800px" title="Illuminati confirmed" style="opacity: 0.65; alt="Illuminati confirmed" src="<?php echo $rootfolder; ?>images/illuminati.png">
+			
+			<audio id ="illuminati_sound" controls loop autoplay style="display:none;" onplay="setvol();">
+				<source src="<?php echo $rootfolder; ?>sound/illuminati.ogg" type="audio/ogg">
+				<source src="<?php echo $rootfolder; ?>sound/illuminati.mp3" type="audio/mpeg">
+			</audio>
+		</div>
+		<script type="text/javascript">
+			
+			
+			var illuminatiId = -1;		
+			var rot = 0;
+			function unilluminati()
+			{
+				clearInterval(illuminatiId);
+				$('#illuminati_sound').stop();
+				$('#illuminati').remove();
+			}
+			
+			function setvol()
+			{
+				 $("#illuminati_sound").prop("volume", 0.1);
+				 
+				illuminatiId = setInterval(function(){
+					rot -= 1;
+					rot = rot % 360;
+					$('#illuminati_image').css({  
+                                '-webkit-transform': 'rotate(' + rot + 'deg)',  //Safari 3.1+, Chrome  
+                                '-moz-transform': 'rotate(' + rot + 'deg)',     //Firefox 3.5-15  
+                                '-ms-transform': 'rotate(' + rot + 'deg)',      //IE9+  
+                                '-o-transform': 'rotate(' + rot + 'deg)',       //Opera 10.5-12.00  
+                                'transform': 'rotate(' + rot + 'deg)'          //Firefox 16+, Opera 12.50+  
+    
+					// console.log("rot: "+rot+" / realrot: "+$('#illuminati_image').css("transform"));
+                            })  
+				}, 33);
+			}
+			
+		</script>
+	<?php } ?>

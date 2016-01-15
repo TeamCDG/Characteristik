@@ -309,6 +309,18 @@ function getGroups()
 				<?php } ?>
 			}
 		}
+		
+		function toggleGroup()
+		{
+			if($('#type').val() == "0")
+			{
+				$('#group').prop( "disabled", false );
+			}
+			else
+			{
+				$('#group').prop( "disabled", true );
+			}
+		}
 		</script>
 	<h1><?php echo $title; ?></h1>
 	
@@ -326,7 +338,7 @@ function getGroups()
 			</tr>
 			<tr>
 				<td class="br caption"><div>Typ:</div></td>
-				<td class="b input_container"><select id="type"><option value="0" selected>Schüler</option><option value="1">Lehrer</option></select></td>
+				<td class="b input_container"><select onchange="toggleGroup()" id="type"><option value="0" selected>Schüler</option><option value="1">Lehrer</option></select></td>
 			</tr>
 			<tr>
 				<td class="br caption"><div>Rechte:</div></td>

@@ -29,7 +29,7 @@ if(!$include)
 		}
 		else
 		{
-			$res = setcookie($_POST['name'], ""+$_POST['value'], time() + 1000*60*60*24*3000, '/');
+			$res = setcookie($_POST['name'], ""+$_POST['value'], time() + 1000*60*60*24*1000, '/');
 		}
 		if($res)
 			die("{\"status\":200, \"message\":\"cookie gesetzt\", \"name\":\"".$_POST['name']."\", \"value\":\"".(isset($_POST['value'])?$_POST['value']:"")."\"}");

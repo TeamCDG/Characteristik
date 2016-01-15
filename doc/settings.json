@@ -1,0 +1,176 @@
+{
+	"polls": {
+		"name": "polls",
+		"display": "Umfragen",
+		"description": "Erlaubt das Umfragen Modul an- bzw. auszuschalten. Ist das Modul deaktiviert, kann nicht mehr abgestimmt werden",
+		"type":0
+	},	
+	
+	"polls_revote": {
+		"name": "polls_revote",
+		"display": "Stimme ändern",
+		"description": "Erlaubt global bei Umfragen die bereits abgegebene Stimme nachträglich zu ändern, sofern die Umfrage es erlaubt und der Nutzer die erforderlichen Rechte besitzt",
+		"type":0
+	},
+
+	"char": {
+		"name": "char",
+		"display": "Charakteristik",
+		"description": "Erlaubt das Charakteristik Modul an- bzw. auszuschalten. Ist das Modul deaktiviert, können weder neue Beiträge abgegeben, noch alte Beiträge bearbeiten werden. Auch Steckbriefe können nicht mehr bearbeitet werden.",
+		"type":0
+	},	
+
+	"char_edit": {
+		"name": "char_edit",
+		"display": "Charakteristik bearbeiten",
+		"description": "Erlaubt global das Bearbeiten eigener Beiträge der Charakteristik, sofern der Nutzer über das entsprechende Recht verfügt.",
+		"type":0
+	},
+
+	"char_delete_request_reason_possible": {
+		"name": "char_delete_request_reason_possible",
+		"display": "Charakteristik Löschanfragen Grund möglich",
+		"description": "Erlaubt global das hinzufügen eines Grundes der Löschanfrage",
+		"type":0
+	},	
+	
+	"char_delete_request_reason_minlen": {
+		"name": "char_delete_request_reason_minlen",
+		"display": "Charakteristik Löschanfragen Grund Mindestlänge",
+		"description": "Legt die Mindestlänge des Löschgrundes fest. ",
+		"type":1
+	},	
+	
+	"info_allow_empty": {
+		"name": "info_allow_empty",
+		"display": "Steckbrief leere Felder",
+		"description": "Legt fest, ob Steckbriefe leere Felder enthalten dürfen",
+		"type":0
+	},	
+	
+	"info_disable_jobwish_easteregg": {
+		"name": "info_disable_jobwish_easteregg",
+		"display": "Steckbrief Berufswunsch Easteregg",
+		"description": "Legt fest, ob beim nichtausfüllen eines Berufswunsch Feldes ein zufälliger Berufswunsch gewählt werden soll.",
+		"type":0
+	},	
+	
+	"gossip": {
+		"name": "gossip",
+		"display": "Gerüchteküche",
+		"description": "Erlaubt das Gerüchte Modul an- bzw. auszuschalten. Ist das Modul deaktiviert, können keine neuen Gerüchte mehr hinzugefügt werden",
+		"type":0
+	},	
+	
+	"gossip_edit": {
+		"name": "gossip_edit",
+		"display": "Gerüchteküche bearbeiten",
+		"description": "Erlaubt global das Bearbeiten eigener Gerüchte, sofern der Nutzer über das entsprechende Recht verfügt.",
+		"type":0
+	},	
+	
+	"gossip_delete_request": {
+		"name": "gossip_delete_request",
+		"display": "Gerüchteküche Löschanfragen",
+		"description": "Erlaubt global das Beantragen einer Löschung von Gerüchten",
+		"type":0
+	},
+	
+	"gossip_delete_request_reason_minlen": {
+		"name": "gossip_delete_request_reason_minlen",
+		"display": "Gerüchteküche Löschanfragen Grund Mindestlänge",
+		"description": "Legt die Mindestlänge des Löschgrundes fest",
+		"type":1
+	},
+	
+	"cit": {
+		"name": "cit",
+		"display": "Zitate",
+		"description": "Erlaubt das Zitate Modul an- bzw. auszuschalten. Ist das Modul deaktiviert, können keine neuen Zitate mehr hinzugefügt werden",
+		"type":0
+	},
+	
+	"cit_edit": {
+		"name": "cit_edit",
+		"display": "Zitate bearbeiten",
+		"description": "Erlaubt global das Bearbeiten eigener Zitate, sofern der Nutzer über das entsprechende Recht verfügt",
+		"type":0
+	},
+	
+	"cit_auto_add_quote": {
+		"name": "cit_auto_add_quote",
+		"display": "Zitate Anführungszeichen",
+		"description": "Legt fest, ob Zitaten automatisch Anführungszeichen hinzugefügt werden sollen",
+		"type":0
+	},
+	
+	"cit_delete_request": {
+		"name": "cit_delete_request",
+		"display": "Zitate Löschanfragen",
+		"description": "Erlaubt global das Beantragen einer Löschung von Zitaten",
+		"type":0
+	},
+	
+	"cit_delete_request_reason_minlen": {
+		"name": "cit_delete_request_reason_minlen",
+		"display": "Zitate Löschanfragen Grund Mindestlänge",
+		"description": "Legt die Mindestlänge des Löschgrundes fest",
+		"type":1
+	},
+	
+	"backup": {
+		"name": "backup",
+		"display": "Backup",
+		"description": "Legt fest, ob Backups erstellt werden sollen",
+		"type":0
+	},
+	
+	"backup_compression": {
+		"name": "backup_compression",
+		"display": "Backup Komprimierung",
+		"description": "Legt fest, ob Backups komprimiert gespeichert werden sollen",
+		"type":0
+	},
+	
+	"backup_send_mail": {
+		"name": "backup_send_mail",
+		"display": "Backup per E-Mail senden",
+		"description": "Legt fest, ob die Backup Datei per E-Mail versendet werden soll",
+		"type":0
+	},
+	
+	"backup_email": {
+		"name": "backup_email",
+		"display": "Backup E-Mail Adresse",
+		"description": "Legt die E-Mail Adresse fest, an welche die Backups gesendet werden sollen",
+		"type":3
+	},
+	
+	"backup_delta": {
+		"name": "backup_delta",
+		"display": "Backup Intervall",
+		"description": "Legt das Intervall fest, indem Backups erstellt werden sollen. Angabe in Stunden",
+		"type":1
+	},
+	
+	"backup_folder": {
+		"name": "backup_folder",
+		"display": "Backup Ordner",
+		"description": "Legt den Ordner fest, in welchem die Backups gespeichert werden sollen",
+		"type":2
+	},
+	
+	"backup_max_keep": {
+		"name": "backup_max_keep",
+		"display": "Maximal gespeicherte Backup",
+		"description": "Legt fest, wie viele vergangene Backups maximal gespeichert bleiben sollen. -1 für unendlich",
+		"type":1
+	},
+	
+	"admin_nsa": {
+		"name": "admin_nsa",
+		"display": "Admin NSA",
+		"description": "Erlaubt global das Sehen der Urheber einzelner Beiträge, sofern der Nutzer über entsprechende Rechte verfügt",
+		"type":0
+	}
+}

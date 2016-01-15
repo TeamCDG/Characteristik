@@ -152,10 +152,104 @@ include($_SERVER['DOCUMENT_ROOT'].$rootfolder."ajax/news.php");
 				ulL.css("line-height", (20+addh)+"px");
 			}
 		}
+		
+		function spoiler( id )
+		{
+			$('li.transition').mouseenter(function() {
+				$('#info_spoiler td').css("z-index", "-1");
+			});
+			
+			$('li.transition').mouseover(function() {
+				$('#info_spoiler td').css("z-index", "-1");
+			});
+			
+			$('li.transition').mouseleave(function() {
+				$('#info_spoiler td').css("z-index", "");
+			});
+			
+			if($('#'+id).css('display') == 'none')
+			{
+				$('#'+id).slideDown();
+				$('#extend_'+id+' img').attr('src', "<?php echo $rootfolder; ?>images/arrow_down.png");
+			}
+			else
+			{
+				$('#'+id).slideUp();
+				$('#extend_'+id+' img').attr('src', "<?php echo $rootfolder; ?>images/arrow_up.png");
+			}
+		}
 		</script>
 		
 		<h1>Startseite</h1>
-		<h2 id="important_info">Warum regt sich eigentlich keiner drüber auf, dass gelöschte gerüchte nicht verschwunden sind?? naja nun funktionierts :D<br>In other news: Knopf gedrückt ;)</h2>
+		<h2 id="important_info">Viel Erfolg bei den anstehenden Abiturklausuren! <br>~Josh</h2>
+		<div style="border:1px solid silver; "><div style="text-align:center;" onclick="spoiler('new_album_spoiler')" id="extend_new_album_spoiler" class="buttonlink" title="Mehr laden">
+						<a>Roadmap<img src="<?php echo $rootfolder; ?>images/arrow_up.png"></a>
+					</div>
+					
+					<div id="new_album_spoiler" style="display: none; border-top: 1px solid silver;">
+					<div style="margin-left: 2px">
+					v0.2.0 (14.01.16):
+					<ul>
+						<li><s>Favicon</s></li>
+						<li><s>Umfragen</s></li>
+						<li><s>Umfragen: Bearbeiten</s></li>		
+						<li><s>Nutzer: löschen</s></li>						
+						<li><s>Nutzer: verschmelzen</s></li>
+						<li><s>Umfragen: Öffnen/Schließen</s></li>
+						<li><s>Umfragen: Löschen</s></li>
+						<li><s>Nutzer: Bearbeiten</s></li>
+					</ul>
+					v0.2.1 (~22.01.16):
+					<ul>						
+						<li><b>Charakteristik: Copy & Paste Funktionalität</b></li>
+						<li>Tools: Nutzer verstecken</li>						
+						<li>Generell: Automatisierte Erinnerungen</li>
+					</ul>
+					v0.3.0 (~ early Feb 2016):
+					<ul>						
+						<li>Backup: Wiederherstellen</li>
+						<li>Backup: Manuelles Backup</li>
+						<li>Backup: Verlauf</li>
+						<li>Startseite: Galerie hinzufügen</li>
+						<li>Termine: Mit Funktionalität versehen</li>
+					</ul>
+					v0.4.0 (~ late Feb 2016):
+					<ul>
+						<li>Galerie: Alben Bearbeiten</li>
+						<li>Galerie: Alben Löschen</li>
+						<li>Galerie: Bilder Titel & Beschreibung</li>
+						<li>Galerie: verhübschen </li>
+						<li>Komitees: Mit Funktionalität versehen</li>
+						<li>Generell: Statistiken</li>
+					</ul>
+					v0.5.0 (~ Mar 2016):
+					<ul>
+						<li>Login: verhübschen</li>
+						<li>Permissions: (Gruppen)Manager</li>
+						<li>Generell: Polieren</li>
+						<li>Major Refactoring</li>
+					</ul>
+					v0.6.0 (far future):
+					<ul>
+						<li>Generell: Mobile Version</li>
+					</ul>
+					v0.7.0 (possibly never):
+					<ul>
+						<li>Generell: Skins</li>
+					</ul>
+					
+					<br>
+					known bugs:
+					<ul>
+						<li><s>Generell: Suchproblem bei Apple Geräten</s></li>
+					</ul>
+					<b>In Bearbeitung</b><br>
+					<i>In Planung</i><br>
+					<br>
+					~ Josh
+					</div></div></div>
+					<br><br>
+
 		<table cellspacing="0">
 			<tr>
 				<th class="br">Neuste Aktivität Schüler</th>
