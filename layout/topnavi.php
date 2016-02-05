@@ -8,6 +8,60 @@ function getNewCharCount($id)
 	$res = mysql_query($sql) or die("ERROR 418: Query failed: ".$sql." ".mysql_error());
 	return mysql_fetch_object($res)->c;
 }
+
+function infoEmpty($uid)
+{
+	$sql = "SELECT COUNT(*) AS c FROM `info` WHERE `uid`='".$uid."'; ";
+	$res = mysql_query($sql) or die ("ERROR: Query failed: $sql @".__FILE__.":".__FUNCTION__."(".__LINE__.") - ".mysql_error());
+	
+	if($obj = mysql_fetch_array($res))
+	{
+		if(intval($obj['c']) > 0)
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
+	else
+	{
+		return true;
+	}
+}
+
+function infoPartial($uid)
+{
+	$sql = "SELECT * FROM `info` WHERE `uid`='".$uid."'; ";
+	$res = mysql_query($sql) or die ("ERROR: Query failed: $sql @".__FILE__.":".__FUNCTION__."(".__LINE__.") - ".mysql_error());
+	
+	if(mysql_num_rows($res) == 0) {
+		return false; //info inexistent
+	} else {
+		$userInfo = mysql_fetch_array($res);
+		$sql = "SELECT * FROM `infobuilder`; ";
+		$res = mysql_query($sql) or die ("ERROR: Query failed: $sql @".__FILE__.":".__FUNCTION__."(".__LINE__.") - ".mysql_error());
+		
+		while($row = mysql_fetch_array($res))
+		{
+			if(strlen($userInfo[$row['id']]) < intval($row['min_length']))
+				return true;
+		}
+		
+		return false;
+	}
+	
+	return false;
+}
+
+function replaceTextConstants($str)
+{
+	$str = str_replace("%ownlink%", "<a href=\"/".$rootfolder."c/c/showuser/?uid=".$_SESSION['userid']."\">Meine Seite</a>", $str);
+	
+	return $str;
+
+}
 ?>
  <div id="container">
         <div id="border">
@@ -89,3 +143,11 @@ function getNewCharCount($id)
 		    <div></div>
 		</div>
 		<div id="content">
+		<?php 
+			$info_empty = infoEmpty($_SESSION['userid']);
+			$info_partial = infoPartial($_SESSION['userid']);
+		
+			if($_SESSION['info_empty_reminder'] && $info_empty) { echo "<div id=\"reminder\">".replaceTextConstants($_SESSION['info_empty_reminder_text'])."</div>"; } 
+			else if($_SESSION['info_partial_reminder'] && $info_partial) { echo "<div id=\"reminder\">".replaceTextConstants($_SESSION['info_empty_partial_text'])."</div>"; } ?>						
+				
+		
