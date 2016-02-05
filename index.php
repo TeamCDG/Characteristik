@@ -199,18 +199,18 @@ include($_SERVER['DOCUMENT_ROOT'].$rootfolder."ajax/news.php");
 						<li><s>Umfragen: Löschen</s></li>
 						<li><s>Nutzer: Bearbeiten</s></li>
 					</ul>
-					v0.2.1 (~22.01.16):
+					v0.2.1 (05.02.16):
 					<ul>						
-						<li><b>Charakteristik: Copy & Paste Funktionalität</b></li>
-						<li>Tools: Nutzer verstecken</li>						
-						<li>Generell: Automatisierte Erinnerungen</li>
+						<li><s>Charakteristik: Copy & Paste Funktionalität</s></li>
+						<li><s>Tools: Nutzer verstecken</s></li>						
+						<li><s>Generell: Automatisierte Erinnerungen</s></li>
+						<li><s>Backup: Verlauf</s></li>
 					</ul>
 					v0.3.0 (~ early Feb 2016):
 					<ul>						
-						<li>Backup: Wiederherstellen</li>
+						<li><b>Generell: Statistiken<b></li>
+						<li><i>Backup: Wiederherstellen<i></li>
 						<li>Backup: Manuelles Backup</li>
-						<li>Backup: Verlauf</li>
-						<li>Startseite: Galerie hinzufügen</li>
 						<li>Termine: Mit Funktionalität versehen</li>
 					</ul>
 					v0.4.0 (~ late Feb 2016):
@@ -218,9 +218,9 @@ include($_SERVER['DOCUMENT_ROOT'].$rootfolder."ajax/news.php");
 						<li>Galerie: Alben Bearbeiten</li>
 						<li>Galerie: Alben Löschen</li>
 						<li>Galerie: Bilder Titel & Beschreibung</li>
-						<li>Galerie: verhübschen </li>
+						<li>Galerie: verhübschen </li>						
+						<li>Startseite: Galerie hinzufügen</li>
 						<li>Komitees: Mit Funktionalität versehen</li>
-						<li>Generell: Statistiken</li>
 					</ul>
 					v0.5.0 (~ Mar 2016):
 					<ul>
