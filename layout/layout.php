@@ -7,6 +7,19 @@ a {
 	cursor: pointer;
 }
 
+body {
+	font-family: "Gill Sans";
+}
+
+*.border {
+	border: 1px solid silver;
+}
+
+#reminder, #reminder a {
+	color: red;
+	text-align: center;
+	font-size: 36px;
+}
 /**********/
 /* TOPNAV */
 /**********/
