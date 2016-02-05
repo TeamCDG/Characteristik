@@ -37,6 +37,7 @@ function createSettingsTable()
 	$json = json_decode($file, true);
 	
 	
+	
 	foreach($json as $set)
 	{
 		echo "<tr id=\"".$set['name']."\"><td class=\"display br\"><div>".$set['display']."</div></td>".getTypeInput($set['type'], $set['name'])."<td class=\"description b\"><div>".$set['description']."</div></td></tr>";

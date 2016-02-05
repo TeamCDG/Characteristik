@@ -172,5 +172,33 @@
 		"display": "Admin NSA",
 		"description": "Erlaubt global das Sehen der Urheber einzelner Beiträge, sofern der Nutzer über entsprechende Rechte verfügt",
 		"type":0
+	},
+	
+	"info_empty_reminder": {
+		"name": "info_empty_reminder",
+		"display": "Steckbrief leer Erinnerung",
+		"description": "Sofern der Nutzer seinen Steckbrief noch nicht ausgefüllt hat, erscheint auf jeder Seite eine Erinnerung mit dem Hinweis, dies bitte zu tun.",
+		"type":0
+	},
+	
+	"info_empty_reminder_text": {
+		"name": "info_empty_reminder_text",
+		"display": "Steckbrief leer Erinnerungstext",
+		"description": "Legt den Text der Erinnerung fest. (%ownsite% zeigt dem Nutzer einen Link zu seiner eigenen Seite)",
+		"type":2
+	},
+	
+	"info_partial_reminder": {
+		"name": "info_partial_reminder",
+		"display": "Steckbrief unvollständig Erinnerung",
+		"description": "Sofern der Nutzer seinen Steckbrief nur unvollständig ausgefüllt hat, erscheint auf jeder Seite eine Erinnerung mit dem Hinweis, selbigen bitte zu vervollständigen.",
+		"type":0
+	},
+	
+	"info_partial_reminder_text": {
+		"name": "info_partial_reminder_text",
+		"display": "Steckbrief unvollständig Erinnerungstext",
+		"description": "Legt den Text der Erinnerung fest. (%ownsite% zeigt dem Nutzer einen Link zu seiner eigenen Seite)",
+		"type":2
 	}
 }
