@@ -703,6 +703,21 @@ function listCit()
 				.unwrapInner('div.innerwrapper')
 			});
 		}
+		
+		function copyPasterino()
+		{
+			var cp = "";
+			var sep = $('#seperator_input').val().replace("\\n","\n");
+			var len = $('td.content').length;
+			$('td.content').each(function( index ) {	
+			console.log($(this).html());
+				cp += $(this).find("div.rightspace").text();
+				cp += $(this).find("div.edit_container").text();
+				if(index < len -1)
+					cp += sep;
+			});
+			$('#copyPasterino').val(cp);
+		}
 		</script>
 	<h1><?php echo $title; ?></h1>
 	
@@ -751,6 +766,22 @@ function listCit()
 		</tbody>
 	</table>
 	</p>
+	<?php if($_SESSION['permissions']['char_copy_pasterino']) { ?>
+	<h2>Copy Pasterino Generator</h2>
+	<div class="border">
+		<div style="margin-top: 2px; margin-left: 2px;">
+			<div onclick="copyPasterino()" style="margin-right: 2px; float: right;" class="buttonlink addbutton" title="hinzufügen">
+					<a>Generieren<img src="<?php echo $rootfolder; ?>images/plus.png"></a>
+				</div>
+				<div style="float: left;">Trennzeichen (\n für neue Zeile):</div>
+				<div><input style="width: calc(100% - 332px); margin-left: 5px;" type="text" name="seperator" id="seperator_input"></div>
+			
+		
+		</div>
+		<div width="100%"><textarea id="copyPasterino" style="width: calc(100% - 7px); min-height: 100px;" ></textarea></div>
+		</div>
+	</p>
+	<?php } ?>
 <?php 
 include($_SERVER['DOCUMENT_ROOT'].$rootfolder."layout/footer.php");
 ?>
