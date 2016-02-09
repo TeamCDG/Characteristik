@@ -208,8 +208,8 @@ include($_SERVER['DOCUMENT_ROOT'].$rootfolder."ajax/news.php");
 					</ul>
 					v0.3.0 (~ early Feb 2016):
 					<ul>						
-						<li><b>Generell: Statistiken<b></li>
-						<li><i>Backup: Wiederherstellen<i></li>
+						<li><b>Generell: Statistiken</b></li>
+						<li><i>Backup: Wiederherstellen</i></li>
 						<li>Backup: Manuelles Backup</li>
 						<li>Termine: Mit Funktionalität versehen</li>
 					</ul>
