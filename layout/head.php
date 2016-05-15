@@ -41,7 +41,7 @@ else if(isset($_POST['uid']) && $_POST['uid']==-1)
 				<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 		<?php } ?>
 		
-		<title><?php echo $title; ?></title>
+		<title><?php echo $title." mobile: ".$_SESSION['mobile']; ?></title>
 		
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 		

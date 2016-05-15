@@ -46,3 +46,4 @@ connect.php
 ajax/login.php
 gallery/albums/*
 backup/*
+lib/mobile-detect-2.8.22/*

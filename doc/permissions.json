@@ -47,4 +47,435 @@
 		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
 	}
 	
+	"char_delete_request_own": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"char_delete_request_other": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"char_copy_pasterino": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"info_read_own": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"info_read_other": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"info_edit_own": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"polls_vote": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}						 	 	
+ 
+	"polls_change_vote": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"polls_create_new": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"polls_edit": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"polls_view": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"polls_see_other_votes": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"cit_add": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"cit_edit_own": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"cit_delete_request": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"cit_direct_delete_own": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"cit_direct_delete_other": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"cit_view": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"cit_view_from": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"cit_copy_pasterino": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}						 	
+ 
+	"gossip_add": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"gossip_edit_own": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"gossip_delete_request": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"gossip_direct_delete_own": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"gossip_direct_delete_other": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"gossip_view": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"gossip_view_from": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"gossip_copy_pasterino": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"gallery_add": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}						 	 	
+ 
+	"gallery_new_album": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"gallery_edit_own": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"gallery_delete_request": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"gallery_direct_delete_own": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"gallery_direct_delete_other": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"gallery_view": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"com_overview_all": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"com_see_own_member": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"com_see_own_meetings": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"com_see_own_leader": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"com_edit_own_member": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"com_edit_own_meetings": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"com_fill_own_attendance_list": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"com_see_all_member": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"com_see_all_meetings": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"com_see_all_leader": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"com_edit_all_member": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"com_edit_all_meetings": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"com_fill_all_attendance_list": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"dates_see_all": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"dates_edit": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"dates_make_mandatory": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"dates_edit_attendance_list": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"admin_process_requests": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"admin_view_requests	": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}						 	 	
+ 
+	"admin_edit_user": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"admin_set_new_user_pass": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"admin_manage_com": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"admin_manage_user": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"admin_manage_permissions": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"admin_manage_gallery": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"admin_manage_info": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"admin_manage_dates": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"admin_manage_char": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"admin_manage_cit": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"admin_manage_gossip": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"admin_manage_backup": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"admin_design_info": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"admin_backup_manual": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"admin_backup_restore": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"admin_hidemyass": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"admin_debug": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 	
+ 
+	"statistics_edit": {
+		"name": "char_direct_delete_other",
+		"display": "Beiträge auf beliebiger Charakteristik löschen",
+		"description": "Diese Richtline erlaubt dem Nutzer Beiträge auf einer beliebigen Charakteristik direkt zu löschen. Ist diese Richtlinie aktiv, so wird der Wert von %char_direct_delete_other%, %char_delete_request_own% und %char_delete_request_other% ignoriert."
+	}							 	 
 }
